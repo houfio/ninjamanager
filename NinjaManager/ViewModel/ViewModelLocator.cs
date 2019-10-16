@@ -12,9 +12,5 @@ namespace NinjaManager.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
         }
-
-        public static void Cleanup()
-        {
-        }
     }
 }
