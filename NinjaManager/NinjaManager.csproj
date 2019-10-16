@@ -126,6 +126,12 @@
   <ItemGroup>
     <Content Include=".gitignore" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NinjaManager.Domain\NinjaManager.Domain.csproj">
+      <Project>{c2eb99a0-d212-4831-87f6-86697457fa65}</Project>
+      <Name>NinjaManager.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
