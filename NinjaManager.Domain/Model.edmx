@@ -9,14 +9,14 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varbinary" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="InventoryItem">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NinjaId" Type="int" Nullable="false" />
           <Property Name="ItemId" Type="int" Nullable="false" />
         </EntityType>
@@ -24,7 +24,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
@@ -33,7 +33,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Gold" Type="int" Nullable="false" />
         </EntityType>
@@ -100,15 +100,15 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="Binary" MaxLength="50" FixedLength="false" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Items" Relationship="Self.FK_Item_Category" FromRole="Category" ToRole="Item" />
         </EntityType>
         <EntityType Name="InventoryItem">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NinjaId" Type="Int32" Nullable="false" />
           <Property Name="ItemId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Item" Relationship="Self.FK_InventoryItem_Item" FromRole="InventoryItem" ToRole="Item" />
@@ -118,7 +118,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Price" Type="Int32" Nullable="false" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
@@ -129,7 +129,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Gold" Type="Int32" Nullable="false" />
           <NavigationProperty Name="InventoryItems" Relationship="Self.FK_InventoryItem_Ninja" FromRole="Ninja" ToRole="InventoryItem" />
