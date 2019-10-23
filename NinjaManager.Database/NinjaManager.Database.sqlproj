@@ -57,6 +57,7 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Model" />
+    <Folder Include="Seed" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Model\Category.sql" />
@@ -64,5 +65,6 @@
     <Build Include="Model\Item.sql" />
     <Build Include="Model\Ninja.sql" />
     <Build Include="Seed.sql" />
+    <Build Include="Seed\Ninja.sql" />
   </ItemGroup>
 </Project>
