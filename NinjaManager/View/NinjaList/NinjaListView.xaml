@@ -1,0 +1,15 @@
+﻿<Window x:Class="NinjaManager.View.NinjaList.NinjaListView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NinjaManager.View.NinjaList"
+        mc:Ignorable="d"
+        DataContext="{Binding NinjaList, Source={StaticResource Locator}}"
+        Title="Ninja Manager - Overview" Height="450" Width="800">
+    <Grid>
+        <ListBox Width="200"  
+         ItemsSource="{Binding Ninjas}"  
+         DisplayMemberPath="Name"/>
+    </Grid>
+</Window>
