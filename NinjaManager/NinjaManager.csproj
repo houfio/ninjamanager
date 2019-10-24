@@ -80,6 +80,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\NinjaList\AddNinjaViewModel.cs" />
     <Compile Include="ViewModel\NinjaList\NinjaListModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="App.xaml.cs">
@@ -88,6 +89,9 @@
     </Compile>
     <Compile Include="View\NinjaList\NinjaListView.xaml.cs">
       <DependentUpon>NinjaListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NinjaList\AddNinjaWindow.xaml.cs">
+      <DependentUpon>AddNinjaWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +133,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\NinjaList\NinjaListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NinjaList\AddNinjaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

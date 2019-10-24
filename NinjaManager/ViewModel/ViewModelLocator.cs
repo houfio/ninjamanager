@@ -12,6 +12,17 @@ namespace NinjaManager.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<NinjaListModel>();
+            SimpleIoc.Default.Register<AddNinjaViewModel>();
+
         }
-    }
+
+            public AddNinjaViewModel AddNinja
+        {
+            get
+            {
+                return new AddNinjaViewModel();
+            }
+        }
+    }    
 }
+

@@ -66,5 +66,7 @@
     <Build Include="Model\Ninja.sql" />
     <Build Include="Seed.sql" />
     <Build Include="Seed\Ninja.sql" />
+    <Build Include="Seed\Item.sql" />
+    <Build Include="Seed\Category.sql" />
   </ItemGroup>
 </Project>

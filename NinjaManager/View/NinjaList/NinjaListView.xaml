@@ -7,9 +7,18 @@
         mc:Ignorable="d"
         DataContext="{Binding NinjaList, Source={StaticResource Locator}}"
         Title="Ninja Manager - Overview" Height="450" Width="800">
+    
+    
     <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Ninja show" FontSize="22" Grid.Column="0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" >
+                <Button Content="Add Ninja" Command="{Binding AddNinjaCommand}"/>
+            </StackPanel>
+        </StackPanel>
         <ListBox Width="200"  
          ItemsSource="{Binding Ninjas}"  
          DisplayMemberPath="Name"/>
     </Grid>
+    
 </Window>
