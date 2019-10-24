@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using NinjaManager.Domain;
@@ -26,13 +27,20 @@ namespace NinjaManager.ViewModel.NinjaList
 
         private void Save(AddNinjaWindow obj)
         {
-            using (var entities = new NinjaManagerEntities())
+            if (String.IsNullOrEmpty(NewNinja.Name))
             {
-                Ninja ninja = new Ninja();
-                ninja.Gold = 1000;
-                ninja.Name = NewNinja.Name;
-                entities.Ninjas.Add(ninja);
-                entities.SaveChanges();
+                MessageBox.Show("Please enter a name");
+            }
+            else
+            {
+                using (var entities = new NinjaManagerEntities())
+                {
+                    Ninja ninja = new Ninja();
+                    ninja.Gold = 1000;
+                    ninja.Name = NewNinja.Name;
+                    entities.Ninjas.Add(ninja);
+                    entities.SaveChanges();
+                }
             }
         }
 
