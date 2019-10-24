@@ -9,6 +9,7 @@ namespace NinjaManager.ViewModel.NinjaList
 {
     public class NinjaViewModel
     {
+        //Wordt nog niet gebruikt
         private Ninja ninja;
 
 

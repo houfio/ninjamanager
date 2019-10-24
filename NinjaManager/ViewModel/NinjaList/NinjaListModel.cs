@@ -10,9 +10,12 @@ namespace NinjaManager.ViewModel.NinjaList
     public class NinjaListModel
     {
         public ObservableCollection<Ninja> Ninjas { get; set; }
-
-
         private AddNinjaWindow _addNinjaWindow;
+
+        //TODO:
+        //- VIEW NINJA
+        //- EDIT NINJA
+        //- DELETE NINJA
 
         public ICommand AddNinjaCommand { get; set; }
 
