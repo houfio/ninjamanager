@@ -18,10 +18,14 @@ namespace NinjaManager.ViewModel.NinjaList
         //- DELETE NINJA
 
         public ICommand AddNinjaCommand { get; set; }
+        public ICommand DeleteNinjaCommand { get; set; }
+
+        private Ninja _selectedNinja;
 
         public NinjaListModel()
         {
             AddNinjaCommand = new RelayCommand(AddNinja);
+            AddNinjaCommand = new RelayCommand(DeleteNinja);
 
             using (var entities = new NinjaManagerEntities())
             {
@@ -35,6 +39,16 @@ namespace NinjaManager.ViewModel.NinjaList
         {
             _addNinjaWindow = new AddNinjaWindow();
             _addNinjaWindow.Show();
+        }
+
+        private void DeleteNinja()
+        {
+            using (var entities = new NinjaManagerEntities())
+            {
+                //var removeElement = SelectedNinja;
+                //Ninjas.Remove(removeElement);
+                
+            }
         }
     }
 }
