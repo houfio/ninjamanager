@@ -16,11 +16,18 @@ namespace NinjaManager.ViewModel
 
         }
 
-            public AddNinjaViewModel AddNinja
+
+        public NinjaListModel ShowNinjas {
+            get {
+                return ServiceLocator.Current.GetInstance<NinjaListModel>();
+            }
+        }
+
+        public AddNinjaViewModel AddNinja
         {
             get
             {
-                return new AddNinjaViewModel();
+                return new AddNinjaViewModel(ShowNinjas);
             }
         }
     }    

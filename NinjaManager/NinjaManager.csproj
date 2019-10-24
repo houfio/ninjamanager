@@ -82,6 +82,7 @@
     </ApplicationDefinition>
     <Compile Include="ViewModel\NinjaList\AddNinjaViewModel.cs" />
     <Compile Include="ViewModel\NinjaList\NinjaListModel.cs" />
+    <Compile Include="ViewModel\NinjaList\NinjaViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
