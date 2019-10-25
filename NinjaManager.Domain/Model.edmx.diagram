@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bfee739c9789485aa27813afe62129a9" Name="Diagram1">
-        <EntityTypeShape EntityType="NinjaManagerModel.Category" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NinjaManagerModel.InventoryItem" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="NinjaManagerModel.Item" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NinjaManagerModel.Ninja" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+      <Diagram DiagramId="58770140b3994debbcb6852c24060d87" Name="Diagram1">
+        <EntityTypeShape EntityType="NinjaManagerModel.Category" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NinjaManagerModel.InventoryItem" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NinjaManagerModel.Item" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="NinjaManagerModel.Ninja" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
         <AssociationConnector Association="NinjaManagerModel.FK_Item_Category" ManuallyRouted="false" />
         <AssociationConnector Association="NinjaManagerModel.FK_InventoryItem_Item" ManuallyRouted="false" />
         <AssociationConnector Association="NinjaManagerModel.FK_InventoryItem_Ninja" ManuallyRouted="false" />
