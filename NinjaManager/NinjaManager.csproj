@@ -85,12 +85,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModel\AddNinjaModel.cs" />
-    <Compile Include="ViewModel\NinjaListModel.cs" />
+    <Compile Include="Model\NinjaModel.cs" />
+    <Compile Include="ViewModel\AddNinjaViewModel.cs" />
+    <Compile Include="ViewModel\InventoryViewModel.cs" />
+    <Compile Include="ViewModel\NinjaListViewModel.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\InventoryView.xaml.cs">
+      <DependentUpon>InventoryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\NinjaListView.xaml.cs">
       <DependentUpon>NinjaListView.xaml</DependentUpon>
@@ -137,6 +142,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\InventoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\NinjaListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

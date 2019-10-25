@@ -1,14 +1,16 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using NinjaManager.Domain;
+using NinjaManager.Model;
 using NinjaManager.ViewModel.NinjaList;
 using System.Windows;
 using System.Windows.Input;
 
 namespace NinjaManager.ViewModel
 {
-    public class AddNinjaModel
+    public class AddNinjaViewModel : ViewModelBase
     {
-        public Ninja Ninja { get; } = new Ninja()
+        public NinjaModel Ninja { get; } = new NinjaModel()
         {
             Gold = 5000
         };
@@ -16,7 +18,7 @@ namespace NinjaManager.ViewModel
 
         private NinjaListModel _model;
 
-        public AddNinjaModel(NinjaListModel model)
+        public AddNinjaViewModel(NinjaListModel model)
         {
             _model = model;
 
@@ -34,7 +36,7 @@ namespace NinjaManager.ViewModel
 
             using (var entities = new NinjaManagerEntities())
             {
-                entities.Ninjas.Add(Ninja);
+                entities.Ninjas.Add(Ninja.GetRaw());
                 entities.SaveChanges();
             }
 

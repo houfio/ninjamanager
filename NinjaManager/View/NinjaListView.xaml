@@ -10,7 +10,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Overview" FontSize="22" Margin="0,8,0,8" HorizontalAlignment="Center" Grid.Row="0"/>
-        <DataGrid ScrollViewer.VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Ninjas, Mode=OneWay}" HeadersVisibility="Column" Margin="8" Grid.Row="1">
+        <DataGrid ItemsSource="{Binding Ninjas, Mode=OneWay}" SelectedItem="{Binding Selected}" ScrollViewer.VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column" CanUserResizeColumns="False"  Margin="8" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name, Mode=OneWay}" Width="*" IsReadOnly="true"/>
                 <DataGridTextColumn Header="Gold" Binding="{Binding Gold, Mode=OneWay}" Width="*" IsReadOnly="true"/>
@@ -24,7 +24,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.ShowNinjaCommand}" CommandParameter="{Binding}">Details</Button>
+                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.ShowNinjaCommand}">Details</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

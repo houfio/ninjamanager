@@ -1,5 +1,8 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using NinjaManager.Domain;
+using NinjaManager.Model;
+using NinjaManager.View;
 using NinjaManager.View.NinjaList;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,22 +11,29 @@ using System.Windows.Input;
 
 namespace NinjaManager.ViewModel.NinjaList
 {
-    public class NinjaListModel
+    public class NinjaListModel : ViewModelBase
     {
-        public ObservableCollection<Ninja> Ninjas { get; set; }
+        public ObservableCollection<NinjaModel> Ninjas { get; set; }
+        public NinjaModel Selected
+        {
+            get => _selected;
+            set => Set(ref _selected, value);
+        }
         public ICommand AddNinjaCommand { get; }
         public ICommand DeleteNinjaCommand { get; }
         public ICommand ShowNinjaCommand { get; }
 
+        private NinjaModel _selected;
+
         public NinjaListModel()
         {
             AddNinjaCommand = new RelayCommand(AddNinja);
-            DeleteNinjaCommand = new RelayCommand<Ninja>(DeleteNinja);
-            ShowNinjaCommand = new RelayCommand<Ninja>(ShowNinja);
+            DeleteNinjaCommand = new RelayCommand<NinjaModel>(DeleteNinja);
+            ShowNinjaCommand = new RelayCommand(ShowNinja);
 
             using (var entities = new NinjaManagerEntities())
             {
-                Ninjas = new ObservableCollection<Ninja>(entities.Ninjas.ToList());
+                Ninjas = new ObservableCollection<NinjaModel>(entities.Ninjas.ToList().Select(NinjaModel.FromRaw));
             }
         }
 
@@ -32,7 +42,7 @@ namespace NinjaManager.ViewModel.NinjaList
             new AddNinjaWindow().Show();
         }
 
-        private void DeleteNinja(Ninja ninja)
+        private void DeleteNinja(NinjaModel ninja)
         {
             var result = MessageBox.Show($"Are you sure you want to remove {ninja.Name}?", "Ninja Manager", MessageBoxButton.YesNo);
 
@@ -43,17 +53,19 @@ namespace NinjaManager.ViewModel.NinjaList
 
             using (var entities = new NinjaManagerEntities())
             {
-                entities.Ninjas.Attach(ninja);
-                entities.Ninjas.Remove(ninja);
+                var raw = ninja.GetRaw();
+
+                entities.Ninjas.Attach(raw);
+                entities.Ninjas.Remove(raw);
                 entities.SaveChanges();
 
                 Ninjas.Remove(ninja);
             }
         }
 
-        private void ShowNinja(Ninja ninja)
+        private void ShowNinja()
         {
-            MessageBox.Show(ninja.Name, "Ninja Manager");
+            new InventoryView().Show();
         }
     }
 }
