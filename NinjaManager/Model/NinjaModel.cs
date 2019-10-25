@@ -34,6 +34,20 @@ namespace NinjaManager.Model
 
         public int Agility => Equipment.Aggregate(0, (previous, next) => previous + next.Agility);
 
+        public int Value => Equipment.Aggregate(0, (previous, next) => previous + next.Price);
+
+        public EquipmentModel Head => GetEquipment(nameof(Head));
+
+        public EquipmentModel Shoulders => GetEquipment(nameof(Shoulders));
+
+        public EquipmentModel Chest => GetEquipment(nameof(Chest));
+
+        public EquipmentModel Belt => GetEquipment(nameof(Belt));
+
+        public EquipmentModel Legs => GetEquipment(nameof(Legs));
+
+        public EquipmentModel Boots => GetEquipment(nameof(Boots));
+
         public Collection<EquipmentModel> Equipment { get; } = new ObservableCollection<EquipmentModel>();
 
         public static NinjaModel FromRaw(Ninja raw)
@@ -53,13 +67,13 @@ namespace NinjaManager.Model
 
         public void AddEquipment(EquipmentModel equipment)
         {
-            if (HasEquipment(equipment))
+            if (GetEquipment(equipment.Category) != null)
             {
                 return;
             }
 
             Equipment.Add(equipment);
-            RaisePropertiesChanged(nameof(Strength), nameof(Intelligence), nameof(Agility));
+            RaiseEquipmentChanged();
         }
 
         public void RemoveEquipment(int id)
@@ -72,12 +86,17 @@ namespace NinjaManager.Model
             }
 
             Equipment.Remove(equipment);
-            RaisePropertiesChanged(nameof(Strength), nameof(Intelligence), nameof(Agility));
+            RaiseEquipmentChanged();
         }
 
-        private bool HasEquipment(EquipmentModel equipment)
+        private void RaiseEquipmentChanged()
         {
-            return Equipment.Where((e) => e.Category == equipment.Category).Any();
+            RaisePropertiesChanged(nameof(Strength), nameof(Intelligence), nameof(Agility), nameof(Value), nameof(Head));
+        }
+
+        private EquipmentModel GetEquipment(string category)
+        {
+            return Equipment.Where((e) => e.Category == category).FirstOrDefault();
         }
     }
 }

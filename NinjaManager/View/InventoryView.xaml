@@ -10,7 +10,45 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Inventory" FontSize="22" Margin="0,8,0,8" HorizontalAlignment="Center" Grid.Row="0"/>
-        <TextBlock Text="{Binding List.Selected.Strength, Mode=OneWay}" Grid.Row="1"/>
+        <Canvas Grid.Row="1">
+            <Image Source="/NinjaManager;component/Image/Ninja.jpg" Height="250" Width="250" Canvas.Left="275" Canvas.Top="39"/>
+            <Line X1="220" Y1="55" X2="350" Y2="175" Stroke="#FF1B1B33" StrokeThickness="5"/>
+            <TextBlock Text="SHOULDERS" FontWeight="Bold" FontSize="8" Foreground="#FF1B1B33" Canvas.Left="170" Canvas.Top="28"/>
+            <TextBlock Text="{Binding List.Selected.Shoulders.Name}" Background="#FF1B1B33" Foreground="White" Width="100" Padding="8" Canvas.Left="170" Canvas.Top="39"/>
+            <Line X1="170" Y1="164" X2="355" Y2="212" StrokeThickness="5" Stroke="#FFCE4149"/>
+            <TextBlock Text="BELT" FontWeight="Bold" FontSize="8" Foreground="#FF1B1B33" Canvas.Left="120" Canvas.Top="137"/>
+            <TextBlock Text="{Binding List.Selected.Belt.Name}" Background="#FFCE4149" Foreground="#FF1B1B33" Width="100" Padding="8" Canvas.Left="120" Canvas.Top="148"/>
+            <Line X1="220" Y1="273" X2="350" Y2="260" Stroke="#FF1B1B33" StrokeThickness="5"/>
+            <TextBlock Text="LEGS" FontWeight="Bold" FontSize="8" Foreground="#FF1B1B33" Canvas.Left="170" Canvas.Top="246"/>
+            <TextBlock Text="{Binding List.Selected.Legs.Name}" Background="#FF1B1B33" Foreground="White" Width="100" Padding="8" Canvas.Left="170" Canvas.Top="257"/>
+            <Line X1="580" Y1="55" X2="410" Y2="90" Stroke="#FFEFC8A7" StrokeThickness="5"/>
+            <TextBlock Text="HEAD" FontWeight="Bold" FontSize="8" Foreground="#FF1B1B33" Canvas.Left="530" Canvas.Top="28"/>
+            <TextBlock Text="{Binding List.Selected.Head.Name}" Background="#FFEFC8A7" Foreground="#FF1B1B33" Width="100" Padding="8" Canvas.Left="530" Canvas.Top="39"/>
+            <Line X1="630" Y1="164" X2="410" Y2="184" Stroke="#FF1B1B33" StrokeThickness="5"/>
+            <TextBlock Text="CHEST" FontWeight="Bold" FontSize="8" Foreground="#FF1B1B33" Canvas.Left="580" Canvas.Top="137"/>
+            <TextBlock Text="{Binding List.Selected.Chest.Name}" Background="#FF1B1B33" Foreground="White" Width="100" Padding="8" Canvas.Left="580" Canvas.Top="148"/>
+            <Line X1="580" Y1="273" X2="436" Y2="284" Stroke="#FF1B1B33" StrokeThickness="5"/>
+            <TextBlock Text="BOOTS" FontWeight="Bold" FontSize="8" Foreground="#FF1B1B33" Canvas.Left="530" Canvas.Top="246"/>
+            <TextBlock Text="{Binding List.Selected.Boots.Name}" Background="#FF1B1B33" Foreground="White" Width="100" Padding="8" Canvas.Left="530" Canvas.Top="257"/>
+            <StackPanel Canvas.Left="25" Canvas.Bottom="25">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Strength: "/>
+                    <TextBlock Text="{Binding List.Selected.Strength, Mode=OneWay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Intelligence: "/>
+                    <TextBlock Text="{Binding List.Selected.Intelligence, Mode=OneWay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Agility: "/>
+                    <TextBlock Text="{Binding List.Selected.Agility, Mode=OneWay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Value: "/>
+                    <TextBlock Text="{Binding List.Selected.Value, Mode=OneWay}"/>
+                </StackPanel>
+            </StackPanel>
+        </Canvas>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
