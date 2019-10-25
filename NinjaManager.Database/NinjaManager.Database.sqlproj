@@ -60,18 +60,17 @@
     <Folder Include="Seed" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Model\Category.sql" />
-    <Build Include="Model\InventoryItem.sql" />
-    <Build Include="Model\Item.sql" />
+    <Build Include="Model\Inventory.sql" />
+    <Build Include="Model\Equipment.sql" />
     <Build Include="Model\Ninja.sql" />
     <None Include="Seed\Ninja.sql" />
-    <None Include="Seed\Item.sql" />
-    <None Include="Seed\Category.sql" />
+    <None Include="Seed\Equipment.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NinjaManager.Database.publish.xml" />
+    <None Include="Seed\Inventory.sql" />
   </ItemGroup>
 </Project>

@@ -5,22 +5,7 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="NinjaManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="InventoryItem">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NinjaId" Type="int" Nullable="false" />
-          <Property Name="ItemId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Item">
+        <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -30,7 +15,15 @@
           <Property Name="Strength" Type="int" Nullable="false" />
           <Property Name="Intelligence" Type="int" Nullable="false" />
           <Property Name="Agility" Type="int" Nullable="false" />
-          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NinjaId" Type="int" Nullable="false" />
+          <Property Name="EquipmentId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Ninja">
           <Key>
@@ -40,58 +33,41 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Gold" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_InventoryItem_Item">
-          <End Role="Item" Type="Self.Item" Multiplicity="1" />
-          <End Role="InventoryItem" Type="Self.InventoryItem" Multiplicity="*" />
+        <Association Name="FK_InventoryItem_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Item">
+            <Principal Role="Equipment">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="InventoryItem">
-              <PropertyRef Name="ItemId" />
+            <Dependent Role="Inventory">
+              <PropertyRef Name="EquipmentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_InventoryItem_Ninja">
           <End Role="Ninja" Type="Self.Ninja" Multiplicity="1" />
-          <End Role="InventoryItem" Type="Self.InventoryItem" Multiplicity="*" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ninja">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="InventoryItem">
+            <Dependent Role="Inventory">
               <PropertyRef Name="NinjaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Item_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
-          <End Role="Item" Type="Self.Item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Item">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="NinjaManagerModelStoreContainer">
-          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="InventoryItem" EntityType="Self.InventoryItem" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ninja" EntityType="Self.Ninja" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_InventoryItem_Item" Association="Self.FK_InventoryItem_Item">
-            <End Role="Item" EntitySet="Item" />
-            <End Role="InventoryItem" EntitySet="InventoryItem" />
+          <AssociationSet Name="FK_InventoryItem_Equipment" Association="Self.FK_InventoryItem_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
           <AssociationSet Name="FK_InventoryItem_Ninja" Association="Self.FK_InventoryItem_Ninja">
             <End Role="Ninja" EntitySet="Ninja" />
-            <End Role="InventoryItem" EntitySet="InventoryItem" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Item_Category" Association="Self.FK_Item_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Item" EntitySet="Item" />
+            <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -99,25 +75,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NinjaManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Items" Relationship="Self.FK_Item_Category" FromRole="Category" ToRole="Item" />
-        </EntityType>
-        <EntityType Name="InventoryItem">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NinjaId" Type="Int32" Nullable="false" />
-          <Property Name="ItemId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Item" Relationship="Self.FK_InventoryItem_Item" FromRole="InventoryItem" ToRole="Item" />
-          <NavigationProperty Name="Ninja" Relationship="Self.FK_InventoryItem_Ninja" FromRole="InventoryItem" ToRole="Ninja" />
-        </EntityType>
-        <EntityType Name="Item">
+        <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -127,9 +85,18 @@
           <Property Name="Strength" Type="Int32" Nullable="false" />
           <Property Name="Intelligence" Type="Int32" Nullable="false" />
           <Property Name="Agility" Type="Int32" Nullable="false" />
-          <Property Name="CategoryId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Item_Category" FromRole="Item" ToRole="Category" />
-          <NavigationProperty Name="InventoryItems" Relationship="Self.FK_InventoryItem_Item" FromRole="Item" ToRole="InventoryItem" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Inventories" Relationship="Self.FK_InventoryItem_Equipment" FromRole="Equipment" ToRole="Inventory" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NinjaId" Type="Int32" Nullable="false" />
+          <Property Name="EquipmentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK_InventoryItem_Equipment" FromRole="Inventory" ToRole="Equipment" />
+          <NavigationProperty Name="Ninja" Relationship="Self.FK_InventoryItem_Ninja" FromRole="Inventory" ToRole="Ninja" />
         </EntityType>
         <EntityType Name="Ninja">
           <Key>
@@ -138,60 +105,43 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Gold" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="InventoryItems" Relationship="Self.FK_InventoryItem_Ninja" FromRole="Ninja" ToRole="InventoryItem" />
+          <NavigationProperty Name="Inventories" Relationship="Self.FK_InventoryItem_Ninja" FromRole="Ninja" ToRole="Inventory" />
         </EntityType>
-        <Association Name="FK_Item_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
-          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+        <Association Name="FK_InventoryItem_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Category">
+            <Principal Role="Equipment">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Item">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_InventoryItem_Item">
-          <End Role="Item" Type="Self.Item" Multiplicity="1" />
-          <End Role="InventoryItem" Type="Self.InventoryItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Item">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="InventoryItem">
-              <PropertyRef Name="ItemId" />
+            <Dependent Role="Inventory">
+              <PropertyRef Name="EquipmentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_InventoryItem_Ninja">
           <End Role="Ninja" Type="Self.Ninja" Multiplicity="1" />
-          <End Role="InventoryItem" Type="Self.InventoryItem" Multiplicity="*" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ninja">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="InventoryItem">
+            <Dependent Role="Inventory">
               <PropertyRef Name="NinjaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="NinjaManagerEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Categories" EntityType="Self.Category" />
-          <EntitySet Name="InventoryItems" EntityType="Self.InventoryItem" />
-          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="Equipments" EntityType="Self.Equipment" />
+          <EntitySet Name="Inventories" EntityType="Self.Inventory" />
           <EntitySet Name="Ninjas" EntityType="Self.Ninja" />
-          <AssociationSet Name="FK_Item_Category" Association="Self.FK_Item_Category">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Item" EntitySet="Items" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InventoryItem_Item" Association="Self.FK_InventoryItem_Item">
-            <End Role="Item" EntitySet="Items" />
-            <End Role="InventoryItem" EntitySet="InventoryItems" />
+          <AssociationSet Name="FK_InventoryItem_Equipment" Association="Self.FK_InventoryItem_Equipment">
+            <End Role="Equipment" EntitySet="Equipments" />
+            <End Role="Inventory" EntitySet="Inventories" />
           </AssociationSet>
           <AssociationSet Name="FK_InventoryItem_Ninja" Association="Self.FK_InventoryItem_Ninja">
             <End Role="Ninja" EntitySet="Ninjas" />
-            <End Role="InventoryItem" EntitySet="InventoryItems" />
+            <End Role="Inventory" EntitySet="Inventories" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -200,33 +150,25 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="NinjaManagerModelStoreContainer" CdmEntityContainer="NinjaManagerEntities">
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="NinjaManagerModel.Category">
-              <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="InventoryItems">
-            <EntityTypeMapping TypeName="NinjaManagerModel.InventoryItem">
-              <MappingFragment StoreEntitySet="InventoryItem">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="NinjaId" ColumnName="NinjaId" />
-                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Items">
-            <EntityTypeMapping TypeName="NinjaManagerModel.Item">
-              <MappingFragment StoreEntitySet="Item">
+          <EntitySetMapping Name="Equipments">
+            <EntityTypeMapping TypeName="NinjaManagerModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Strength" ColumnName="Strength" />
                 <ScalarProperty Name="Intelligence" ColumnName="Intelligence" />
                 <ScalarProperty Name="Agility" ColumnName="Agility" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventories">
+            <EntityTypeMapping TypeName="NinjaManagerModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NinjaId" ColumnName="NinjaId" />
+                <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -17,9 +17,13 @@ namespace NinjaManager.ViewModel.NinjaList
         public ICommand AddNinjaCommand { get; }
         public ICommand DeleteNinjaCommand { get; }
         public ICommand ShowNinjaCommand { get; }
-        public NinjaModel Selected { get => _selected; private set => Set(ref _selected, value); }
+        public NinjaModel Selected
+        {
+            get => Ninjas[_selected];
+            set => Set(ref _selected, Ninjas.IndexOf(value));
+        }
 
-        private NinjaModel _selected;
+        private int _selected;
         private Window _inventoryView;
 
         public NinjaListModel()
@@ -50,21 +54,19 @@ namespace NinjaManager.ViewModel.NinjaList
 
             using (var entities = new NinjaManagerEntities())
             {
-                var raw = ninja.ToRaw();
-
-                entities.Ninjas.Attach(raw);
-                entities.Ninjas.Remove(raw);
+                entities.Ninjas.Attach(ninja.Raw);
+                entities.Ninjas.Remove(ninja.Raw);
                 entities.SaveChanges();
 
                 Ninjas.Remove(ninja);
             }
 
-            if (Selected != ninja)
+            if (Selected != ninja || _inventoryView == null)
             {
                 return;
             }
 
-            CloseWindows(_inventoryView);
+            _inventoryView.Close();
         }
 
         private void ShowNinja(NinjaModel ninja)
@@ -82,17 +84,6 @@ namespace NinjaManager.ViewModel.NinjaList
                 _inventoryView = null;
             };
             _inventoryView.Show();
-        }
-
-        private void CloseWindows(params Window[] windows)
-        {
-            foreach (var window in windows)
-            {
-                if (window != null)
-                {
-                    window.Close();
-                }
-            }
         }
     }
 }

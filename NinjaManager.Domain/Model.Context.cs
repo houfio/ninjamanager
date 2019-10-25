@@ -25,9 +25,8 @@ namespace NinjaManager.Domain
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<InventoryItem> InventoryItems { get; set; }
-        public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<Equipment> Equipments { get; set; }
+        public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<Ninja> Ninjas { get; set; }
     }
 }

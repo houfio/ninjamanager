@@ -1,41 +1,83 @@
 ﻿using NinjaManager.Domain;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace NinjaManager.Model
 {
-    public class NinjaModel
+    public class NinjaModel : GenericModel<Ninja>
     {
-        private Ninja _ninja;
-
-        public int Id => _ninja.Id;
+        public int Id => Raw.Id;
 
         public string Name
         {
-            get => _ninja.Name;
-            set => _ninja.Name = value;
+            get => Raw.Name;
+            set
+            {
+                Raw.Name = value;
+                RaisePropertyChanged();
+            }
         }
 
         public int Gold
         {
-            get => _ninja.Gold;
-            set => _ninja.Gold = value;
-        }
-
-        public NinjaModel()
-        {
-            _ninja = new Ninja();
-        }
-
-        public static NinjaModel FromRaw(Ninja ninja)
-        {
-            return new NinjaModel
+            get => Raw.Gold;
+            set
             {
-                _ninja = ninja
-            };
+                Raw.Gold = value;
+                RaisePropertyChanged();
+            }
         }
 
-        public Ninja ToRaw()
+        public int Strength => Equipment.Aggregate(0, (previous, next) => previous + next.Strength);
+
+        public int Intelligence => Equipment.Aggregate(0, (previous, next) => previous + next.Intelligence);
+
+        public int Agility => Equipment.Aggregate(0, (previous, next) => previous + next.Agility);
+
+        public Collection<EquipmentModel> Equipment { get; } = new ObservableCollection<EquipmentModel>();
+
+        public static NinjaModel FromRaw(Ninja raw)
         {
-            return _ninja;
+            var model = new NinjaModel
+            {
+                Raw = raw
+            };
+
+            foreach (var inventory in raw.Inventories)
+            {
+                model.AddEquipment(EquipmentModel.FromRaw(inventory.Equipment));
+            }
+
+            return model;
+        }
+
+        public void AddEquipment(EquipmentModel equipment)
+        {
+            if (HasEquipment(equipment))
+            {
+                return;
+            }
+
+            Equipment.Add(equipment);
+            RaisePropertiesChanged(nameof(Strength), nameof(Intelligence), nameof(Agility));
+        }
+
+        public void RemoveEquipment(int id)
+        {
+            var equipment = Equipment.Where((e) => e.Id == id).FirstOrDefault();
+
+            if (equipment == null)
+            {
+                return;
+            }
+
+            Equipment.Remove(equipment);
+            RaisePropertiesChanged(nameof(Strength), nameof(Intelligence), nameof(Agility));
+        }
+
+        private bool HasEquipment(EquipmentModel equipment)
+        {
+            return Equipment.Where((e) => e.Category == equipment.Category).Any();
         }
     }
 }

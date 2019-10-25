@@ -12,12 +12,12 @@ namespace NinjaManager.Domain
     using System;
     using System.Collections.Generic;
     
-    public partial class Item
+    public partial class Equipment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Item()
+        public Equipment()
         {
-            this.InventoryItems = new HashSet<InventoryItem>();
+            this.Inventories = new HashSet<Inventory>();
         }
     
         public int Id { get; set; }
@@ -26,10 +26,9 @@ namespace NinjaManager.Domain
         public int Strength { get; set; }
         public int Intelligence { get; set; }
         public int Agility { get; set; }
-        public int CategoryId { get; set; }
+        public string Category { get; set; }
     
-        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InventoryItem> InventoryItems { get; set; }
+        public virtual ICollection<Inventory> Inventories { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace NinjaManager.Domain
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Ninja()
         {
-            this.InventoryItems = new HashSet<InventoryItem>();
+            this.Inventories = new HashSet<Inventory>();
         }
     
         public int Id { get; set; }
@@ -25,6 +25,6 @@ namespace NinjaManager.Domain
         public int Gold { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InventoryItem> InventoryItems { get; set; }
+        public virtual ICollection<Inventory> Inventories { get; set; }
     }
 }

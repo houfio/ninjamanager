@@ -12,13 +12,13 @@ namespace NinjaManager.Domain
     using System;
     using System.Collections.Generic;
     
-    public partial class InventoryItem
+    public partial class Inventory
     {
         public int Id { get; set; }
         public int NinjaId { get; set; }
-        public int ItemId { get; set; }
+        public int EquipmentId { get; set; }
     
-        public virtual Item Item { get; set; }
+        public virtual Equipment Equipment { get; set; }
         public virtual Ninja Ninja { get; set; }
     }
 }

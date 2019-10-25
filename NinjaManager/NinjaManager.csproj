@@ -85,6 +85,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GenericModel.cs" />
+    <Compile Include="Model\EquipmentModel.cs" />
     <Compile Include="Model\NinjaModel.cs" />
     <Compile Include="ViewModel\AddNinjaViewModel.cs" />
     <Compile Include="ViewModel\InventoryViewModel.cs" />

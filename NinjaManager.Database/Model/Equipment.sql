@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Item]
+﻿CREATE TABLE [dbo].[Equipment]
 (
     [Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Name] NVARCHAR(50) NOT NULL, 
@@ -6,6 +6,5 @@
     [Strength] INT NOT NULL, 
     [Intelligence] INT NOT NULL, 
     [Agility] INT NOT NULL, 
-    [CategoryId] INT NOT NULL, 
-    CONSTRAINT [FK_Item_Category] FOREIGN KEY ([CategoryId]) REFERENCES [Category]([Id]) 
+    [Category] NVARCHAR(50) NOT NULL 
 )
