@@ -91,7 +91,7 @@ namespace NinjaManager.Model
 
         private void RaiseEquipmentChanged()
         {
-            RaisePropertiesChanged(nameof(Strength), nameof(Intelligence), nameof(Agility), nameof(Value), nameof(Head));
+            RaisePropertiesChanged(nameof(Strength), nameof(Intelligence), nameof(Agility), nameof(Value), nameof(Head), nameof(Shoulders), nameof(Chest), nameof(Belt), nameof(Legs), nameof(Boots));
         }
 
         private EquipmentModel GetEquipment(string category)
