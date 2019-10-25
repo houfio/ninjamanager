@@ -64,9 +64,14 @@
     <Build Include="Model\InventoryItem.sql" />
     <Build Include="Model\Item.sql" />
     <Build Include="Model\Ninja.sql" />
-    <Build Include="Seed.sql" />
-    <Build Include="Seed\Ninja.sql" />
-    <Build Include="Seed\Item.sql" />
-    <Build Include="Seed\Category.sql" />
+    <None Include="Seed\Ninja.sql" />
+    <None Include="Seed\Item.sql" />
+    <None Include="Seed\Category.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NinjaManager.Database.publish.xml" />
   </ItemGroup>
 </Project>
