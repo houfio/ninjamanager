@@ -36,7 +36,7 @@ namespace NinjaManager.ViewModel
 
             using (var entities = new NinjaManagerEntities())
             {
-                entities.Ninjas.Add(Ninja.GetRaw());
+                entities.Ninjas.Add(Ninja.ToRaw());
                 entities.SaveChanges();
             }
 

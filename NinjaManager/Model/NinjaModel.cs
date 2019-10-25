@@ -33,7 +33,7 @@ namespace NinjaManager.Model
             };
         }
 
-        public Ninja GetRaw()
+        public Ninja ToRaw()
         {
             return _ninja;
         }

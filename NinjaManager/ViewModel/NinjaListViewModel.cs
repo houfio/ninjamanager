@@ -14,22 +14,19 @@ namespace NinjaManager.ViewModel.NinjaList
     public class NinjaListModel : ViewModelBase
     {
         public ObservableCollection<NinjaModel> Ninjas { get; set; }
-        public NinjaModel Selected
-        {
-            get => _selected;
-            set => Set(ref _selected, value);
-        }
         public ICommand AddNinjaCommand { get; }
         public ICommand DeleteNinjaCommand { get; }
         public ICommand ShowNinjaCommand { get; }
+        public NinjaModel Selected { get => _selected; private set => Set(ref _selected, value); }
 
         private NinjaModel _selected;
+        private Window _inventoryView;
 
         public NinjaListModel()
         {
             AddNinjaCommand = new RelayCommand(AddNinja);
             DeleteNinjaCommand = new RelayCommand<NinjaModel>(DeleteNinja);
-            ShowNinjaCommand = new RelayCommand(ShowNinja);
+            ShowNinjaCommand = new RelayCommand<NinjaModel>(ShowNinja);
 
             using (var entities = new NinjaManagerEntities())
             {
@@ -39,7 +36,7 @@ namespace NinjaManager.ViewModel.NinjaList
 
         private void AddNinja()
         {
-            new AddNinjaWindow().Show();
+            new AddNinjaView().Show();
         }
 
         private void DeleteNinja(NinjaModel ninja)
@@ -53,7 +50,7 @@ namespace NinjaManager.ViewModel.NinjaList
 
             using (var entities = new NinjaManagerEntities())
             {
-                var raw = ninja.GetRaw();
+                var raw = ninja.ToRaw();
 
                 entities.Ninjas.Attach(raw);
                 entities.Ninjas.Remove(raw);
@@ -61,11 +58,41 @@ namespace NinjaManager.ViewModel.NinjaList
 
                 Ninjas.Remove(ninja);
             }
+
+            if (Selected != ninja)
+            {
+                return;
+            }
+
+            CloseWindows(_inventoryView);
         }
 
-        private void ShowNinja()
+        private void ShowNinja(NinjaModel ninja)
         {
-            new InventoryView().Show();
+            Selected = ninja;
+
+            if (_inventoryView != null)
+            {
+                return;
+            }
+
+            _inventoryView = new InventoryView();
+            _inventoryView.Closed += delegate
+            {
+                _inventoryView = null;
+            };
+            _inventoryView.Show();
+        }
+
+        private void CloseWindows(params Window[] windows)
+        {
+            foreach (var window in windows)
+            {
+                if (window != null)
+                {
+                    window.Close();
+                }
+            }
         }
     }
 }
