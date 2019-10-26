@@ -7,6 +7,10 @@ namespace NinjaManager.View
         public InventoryView()
         {
             InitializeComponent();
+            Closed += delegate
+            {
+                ((IClosable)DataContext).Close();
+            };
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace NinjaManager.ViewModel
 {
-    public class InventoryViewModel : ViewModelBase
+    public class InventoryViewModel : ViewModelBase, IClosable
     {
         public NinjaListModel List { get; }
         public ICommand EditCommand { get; }
@@ -17,6 +17,11 @@ namespace NinjaManager.ViewModel
         {
             List = list;
             EditCommand = new RelayCommand(Edit);
+        }
+
+        public void Close()
+        {
+            CloseWindows(_editWindow);
         }
 
         private void Edit()
@@ -32,6 +37,17 @@ namespace NinjaManager.ViewModel
                 _editWindow = null;
             };
             _editWindow.Show();
+        }
+
+        private void CloseWindows(params Window[] windows)
+        {
+            foreach (var window in windows)
+            {
+                if (window != null)
+                {
+                    window.Close();
+                }
+            }
         }
     }
 }

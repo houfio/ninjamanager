@@ -86,6 +86,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="GenericModel.cs" />
+    <Compile Include="IClosable.cs" />
     <Compile Include="Model\EquipmentModel.cs" />
     <Compile Include="Model\NinjaModel.cs" />
     <Compile Include="ViewModel\AddNinjaViewModel.cs" />
