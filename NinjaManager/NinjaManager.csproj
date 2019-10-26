@@ -87,6 +87,7 @@
     </ApplicationDefinition>
     <Compile Include="GenericModel.cs" />
     <Compile Include="GenericViewModel.cs" />
+    <Compile Include="GenericView.cs" />
     <Compile Include="IClosable.cs" />
     <Compile Include="Model\EquipmentModel.cs" />
     <Compile Include="Model\NinjaModel.cs" />

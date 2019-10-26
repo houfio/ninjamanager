@@ -1,20 +1,10 @@
-﻿using System.Windows;
-
-namespace NinjaManager.View
+﻿namespace NinjaManager.View
 {
-    public partial class ShopView : Window
+    public partial class ShopView : GenericView
     {
         public ShopView()
         {
             InitializeComponent();
-
-            Closed += delegate
-            {
-                if (DataContext is IClosable)
-                {
-                    ((IClosable)DataContext).Close();
-                }
-            };
         }
     }
 }

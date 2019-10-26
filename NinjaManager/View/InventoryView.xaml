@@ -1,6 +1,7 @@
-﻿<Window x:Class="NinjaManager.View.InventoryView"
+﻿<local:GenericView x:Class="NinjaManager.View.InventoryView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:NinjaManager"
         DataContext="{Binding Inventory, Source={StaticResource Locator}}"
         Title="Ninja Manager - Inventory" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
@@ -58,4 +59,4 @@
             <Button Content="Edit" Command="{Binding EditCommand}" Grid.Column="1"/>
         </Grid>
     </Grid>
-</Window>
+</local:GenericView>
