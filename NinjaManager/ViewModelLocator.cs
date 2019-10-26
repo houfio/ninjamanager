@@ -9,6 +9,7 @@ namespace NinjaManager.ViewModel
         public AddNinjaViewModel AddNinja => new AddNinjaViewModel(NinjaList);
         public InventoryViewModel Inventory => new InventoryViewModel(NinjaList);
         public EditNinjaViewModel EditNinja => new EditNinjaViewModel(NinjaList);
+        public ShopViewModel Shop => new ShopViewModel(NinjaList);
 
         public ViewModelLocator()
         {
@@ -17,6 +18,7 @@ namespace NinjaManager.ViewModel
             SimpleIoc.Default.Register<AddNinjaViewModel>();
             SimpleIoc.Default.Register<InventoryViewModel>();
             SimpleIoc.Default.Register<EditNinjaViewModel>();
+            SimpleIoc.Default.Register<ShopViewModel>();
         }
     }    
 }

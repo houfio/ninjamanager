@@ -98,6 +98,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModel\ShopViewModel.cs" />
     <Compile Include="View\EditNinjaView.xaml.cs">
       <DependentUpon>EditNinjaView.xaml</DependentUpon>
     </Compile>
@@ -109,6 +110,9 @@
     </Compile>
     <Compile Include="View\AddNinjaView.xaml.cs">
       <DependentUpon>AddNinjaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ShopView.xaml.cs">
+      <DependentUpon>ShopView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddNinjaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ShopView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
