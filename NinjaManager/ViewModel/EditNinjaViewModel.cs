@@ -19,11 +19,24 @@ namespace NinjaManager.ViewModel
 
         public EditNinjaViewModel(NinjaListModel model)
         {
-            _name = model.Selected.Name;
-            _gold = model.Selected.Gold;
             _model = model;
+            _model.PropertyChanged += (obj, args) =>
+            {
+                if (args.PropertyName == "Selected")
+                {
+                    UpdateDefault();
+                }
+            };
 
             SaveCommand = new RelayCommand<Window>(Save);
+
+            UpdateDefault();
+        }
+
+        private void UpdateDefault()
+        {
+            Name = _model.Selected.Name;
+            Gold = _model.Selected.Gold;
         }
 
         private void Save(Window window)
