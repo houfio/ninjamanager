@@ -85,7 +85,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Util\BlockableCommand.cs" />
+    <Compile Include="Command\AddNinjaCommand.cs" />
+    <Compile Include="Command\BuyCommand.cs" />
+    <Compile Include="Command\EditNinjaCommand.cs" />
+    <Compile Include="Command\SellCommand.cs" />
+    <Compile Include="Util\GenericCommand.cs" />
     <Compile Include="Util\GenericModel.cs" />
     <Compile Include="Util\GenericViewModel.cs" />
     <Compile Include="Util\GenericView.cs" />

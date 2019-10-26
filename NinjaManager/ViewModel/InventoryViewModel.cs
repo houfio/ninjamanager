@@ -21,24 +21,14 @@ namespace NinjaManager.ViewModel
         public InventoryViewModel(NinjaListModel list)
         {
             List = list;
-            EditCommand = new RelayCommand(Edit);
-            ShopCommand = new RelayCommand(Shop);
+            ShopCommand = new RelayCommand(() => OpenWindow(ref _shopWindow, () => _shopWindow = null));
+            EditCommand = new RelayCommand(() => OpenWindow(ref _editWindow, () => _editWindow = null));
             ClearCommand = new RelayCommand(Clear);
         }
 
         public void Close()
         {
             CloseWindows(_editWindow, _shopWindow);
-        }
-
-        private void Shop()
-        {
-            OpenWindow(ref _shopWindow, () => _shopWindow = null);
-        }
-
-        private void Edit()
-        {
-            OpenWindow(ref _editWindow, () => _editWindow = null);
         }
 
         private void Clear()

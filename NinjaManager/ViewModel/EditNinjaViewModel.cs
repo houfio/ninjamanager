@@ -1,60 +1,46 @@
-﻿using GalaSoft.MvvmLight.Command;
-using NinjaManager.Domain;
+﻿using NinjaManager.Command;
 using NinjaManager.Util;
-using System.Linq;
-using System.Windows;
+using System.ComponentModel;
 using System.Windows.Input;
 
 namespace NinjaManager.ViewModel
 {
-    public class EditNinjaViewModel : GenericViewModel
+    public class EditNinjaViewModel : GenericViewModel, IClosable
     {
+        public NinjaListModel List { get; }
+        public ICommand SaveCommand { get; }
         public string Name { get => _name; set => Set(ref _name, value); }
         public int Gold { get => _gold; set => Set(ref _gold, value); }
-        public ICommand SaveCommand { get; }
 
         private string _name;
         private int _gold;
-        private NinjaListModel _model;
 
-        public EditNinjaViewModel(NinjaListModel model)
+        public EditNinjaViewModel(NinjaListModel list)
         {
-            _model = model;
-            _model.PropertyChanged += (obj, args) =>
-            {
-                if (args.PropertyName == "Selected")
-                {
-                    UpdateDefault();
-                }
-            };
+            List = list;
+            SaveCommand = new EditNinjaCommand(this);
 
-            SaveCommand = new RelayCommand<Window>(Save);
-
+            List.PropertyChanged += HandlePropertyChange;
             UpdateDefault();
+        }
+
+        public void Close()
+        {
+            List.PropertyChanged -= HandlePropertyChange;
+        }
+
+        private void HandlePropertyChange(object sender, PropertyChangedEventArgs args)
+        {
+            if (args.PropertyName == "Selected")
+            {
+                UpdateDefault();
+            }
         }
 
         private void UpdateDefault()
         {
-            Name = _model.Selected.Name;
-            Gold = _model.Selected.Gold;
-        }
-
-        private void Save(Window window)
-        {
-            using (var entities = new NinjaManagerEntities())
-            {
-                var ninja = entities.Ninjas.First((n) => n.Id == _model.Selected.Id);
-
-                if (ninja != null)
-                {
-                    _model.Selected.Name = ninja.Name = Name;
-                    _model.Selected.Gold = ninja.Gold = Gold;
-
-                    entities.SaveChanges();
-                }
-            }
-
-            window.Close();
+            Name = List.Selected.Name;
+            Gold = List.Selected.Gold;
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace NinjaManager.Util
 {
-    public class BlockableCommand<T> : ICommand
+    public abstract class GenericCommand<T, V> : ICommand where V : GenericViewModel
     {
         public event EventHandler CanExecuteChanged
         {
@@ -11,23 +11,25 @@ namespace NinjaManager.Util
             remove => CommandManager.RequerySuggested -= value;
         }
 
-        private Action<T> _execute;
-        private Predicate<T> _canExecute;
+        private readonly V _view;
 
-        public BlockableCommand(Action<T> execute, Predicate<T> canExecute)
+        public GenericCommand(V view)
         {
-            _canExecute = canExecute;
-            _execute = execute;
+            _view = view;
         }
 
         public void Execute(object parameter)
         {
-            _execute((T)parameter);
+            Execute((T)parameter, _view);
         }
+
+        public abstract void Execute(T args, V view);
 
         public bool CanExecute(object parameter)
         {
-            return _canExecute((T)parameter);
+            return CanExecute((T)parameter, _view);
         }
+
+        public abstract bool CanExecute(T args, V view);
     }
 }

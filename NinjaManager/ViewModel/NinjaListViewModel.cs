@@ -24,7 +24,7 @@ namespace NinjaManager.ViewModel
 
         public NinjaListModel()
         {
-            AddNinjaCommand = new RelayCommand(AddNinja);
+            AddNinjaCommand = new RelayCommand(() => OpenWindow(ref _addView, () => _addView = null));
             DeleteNinjaCommand = new RelayCommand<NinjaModel>(DeleteNinja);
             ShowNinjaCommand = new RelayCommand<NinjaModel>(ShowNinja);
 
@@ -37,11 +37,6 @@ namespace NinjaManager.ViewModel
         public void Close()
         {
             CloseWindows(_inventoryView, _addView);
-        }
-
-        private void AddNinja()
-        {
-            OpenWindow(ref _addView, () => _addView = null);
         }
 
         private void DeleteNinja(NinjaModel ninja)
