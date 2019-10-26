@@ -28,7 +28,6 @@ namespace NinjaManager.ViewModel
 
         private void Save(Window window)
         {
-
             using (var entities = new NinjaManagerEntities())
             {
                 var ninja = entities.Ninjas.First((n) => n.Id == _model.Selected.Id);

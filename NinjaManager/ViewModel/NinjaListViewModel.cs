@@ -47,6 +47,11 @@ namespace NinjaManager.ViewModel
                 return;
             }
 
+            if (Selected == ninja && _inventoryView != null)
+            {
+                _inventoryView.Close();
+            }
+
             using (var entities = new NinjaManagerEntities())
             {
                 entities.Ninjas.Attach(ninja.Raw);
@@ -55,13 +60,6 @@ namespace NinjaManager.ViewModel
 
                 Ninjas.Remove(ninja);
             }
-
-            if (Selected != ninja || _inventoryView == null)
-            {
-                return;
-            }
-
-            _inventoryView.Close();
         }
 
         private void ShowNinja(NinjaModel ninja)
