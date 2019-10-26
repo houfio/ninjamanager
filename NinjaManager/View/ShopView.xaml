@@ -71,8 +71,8 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="1">
-                <Button Content="Buy"/>
-                <Button Content="Sell"/>
+                <Button Content="Buy" Command="{Binding BuyCommand}"/>
+                <Button Content="Sell" Command="{Binding SellCommand}"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

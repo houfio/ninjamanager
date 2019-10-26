@@ -76,6 +76,7 @@ namespace NinjaManager.Model
             using (var entities = new NinjaManagerEntities())
             {
                 entities.Ninjas.Attach(Raw);
+                entities.Equipments.Attach(equipment.Raw);
 
                 Gold -= equipment.Price;
                 Raw.Equipments.Add(equipment.Raw);
@@ -110,14 +111,14 @@ namespace NinjaManager.Model
             RaiseEquipmentChanged();
         }
 
+        public EquipmentModel GetEquipment(string category)
+        {
+            return Equipment.Where((e) => e.Category == category).FirstOrDefault();
+        }
+
         private void RaiseEquipmentChanged()
         {
             RaisePropertiesChanged(nameof(Strength), nameof(Intelligence), nameof(Agility), nameof(Value), nameof(Head), nameof(Shoulders), nameof(Chest), nameof(Belt), nameof(Legs), nameof(Boots));
-        }
-
-        private EquipmentModel GetEquipment(string category)
-        {
-            return Equipment.Where((e) => e.Category == category).FirstOrDefault();
         }
     }
 }

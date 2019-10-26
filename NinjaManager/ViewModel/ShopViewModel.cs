@@ -19,6 +19,8 @@ namespace NinjaManager.ViewModel
         public EquipmentModel Selected { get => _selected == -1 || _selected >= Equipment.Count ? null : Equipment[_selected]; set => Set(ref _selected, Equipment.IndexOf(value)); }
         public ICommand CategoryCommand { get; }
         public ICommand EquipmentCommand { get; }
+        public ICommand BuyCommand { get; }
+        public ICommand SellCommand { get; }
 
         private int _selected;
 
@@ -28,6 +30,8 @@ namespace NinjaManager.ViewModel
             Equipment = new ObservableCollection<EquipmentModel>();
             CategoryCommand = new RelayCommand<string>(SelectCategory);
             EquipmentCommand = new RelayCommand<EquipmentModel>(SelectEquipment);
+            BuyCommand = new BlockableCommand<object>(Buy, CanBuy);
+            SellCommand = new BlockableCommand<object>(Sell, CanSell);
 
             using (var entities = new NinjaManagerEntities())
             {
@@ -56,6 +60,36 @@ namespace NinjaManager.ViewModel
         {
             Selected = equipment;
             RaisePropertyChanged(nameof(DetailVisiblity));
+        }
+
+        private void Buy(object parmeter)
+        {
+            List.Selected.AddEquipment(Selected);
+        }
+
+        private bool CanBuy(object parmeter)
+        {
+            if (Selected == null)
+            {
+                return false;
+            }
+
+            return List.Selected.Gold >= Selected.Price && List.Selected.GetEquipment(Selected.Category) == null;
+        }
+
+        private void Sell(object parmeter)
+        {
+            List.Selected.RemoveEquipment(Selected.Id);
+        }
+
+        private bool CanSell(object parmeter)
+        {
+            if (Selected == null)
+            {
+                return false;
+            }
+
+            return List.Selected.Equipment.Where((e) => e.Id == Selected.Id).Any();
         }
     }
 }
