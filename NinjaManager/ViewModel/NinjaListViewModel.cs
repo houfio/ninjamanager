@@ -3,13 +3,12 @@ using GalaSoft.MvvmLight.Command;
 using NinjaManager.Domain;
 using NinjaManager.Model;
 using NinjaManager.View;
-using NinjaManager.View.NinjaList;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
-namespace NinjaManager.ViewModel.NinjaList
+namespace NinjaManager.ViewModel
 {
     public class NinjaListModel : ViewModelBase
     {
@@ -17,11 +16,7 @@ namespace NinjaManager.ViewModel.NinjaList
         public ICommand AddNinjaCommand { get; }
         public ICommand DeleteNinjaCommand { get; }
         public ICommand ShowNinjaCommand { get; }
-        public NinjaModel Selected
-        {
-            get => Ninjas[_selected];
-            set => Set(ref _selected, Ninjas.IndexOf(value));
-        }
+        public NinjaModel Selected { get => Ninjas[_selected]; set => Set(ref _selected, Ninjas.IndexOf(value)); }
 
         private int _selected;
         private Window _inventoryView;

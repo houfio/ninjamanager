@@ -1,6 +1,5 @@
 using CommonServiceLocator;
 using GalaSoft.MvvmLight.Ioc;
-using NinjaManager.ViewModel.NinjaList;
 
 namespace NinjaManager.ViewModel
 {
@@ -9,6 +8,7 @@ namespace NinjaManager.ViewModel
         public NinjaListModel NinjaList => ServiceLocator.Current.GetInstance<NinjaListModel>();
         public AddNinjaViewModel AddNinja => new AddNinjaViewModel(NinjaList);
         public InventoryViewModel Inventory => new InventoryViewModel(NinjaList);
+        public EditNinjaViewModel EditNinja => new EditNinjaViewModel(NinjaList);
 
         public ViewModelLocator()
         {
@@ -16,6 +16,7 @@ namespace NinjaManager.ViewModel
             SimpleIoc.Default.Register<NinjaListModel>();
             SimpleIoc.Default.Register<AddNinjaViewModel>();
             SimpleIoc.Default.Register<InventoryViewModel>();
+            SimpleIoc.Default.Register<EditNinjaViewModel>();
         }
     }    
 }

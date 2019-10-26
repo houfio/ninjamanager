@@ -33,19 +33,19 @@
             <StackPanel Canvas.Left="25" Canvas.Bottom="25">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Strength: "/>
-                    <TextBlock Text="{Binding List.Selected.Strength, Mode=OneWay}"/>
+                    <TextBlock Text="{Binding List.Selected.Strength}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Intelligence: "/>
-                    <TextBlock Text="{Binding List.Selected.Intelligence, Mode=OneWay}"/>
+                    <TextBlock Text="{Binding List.Selected.Intelligence}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Agility: "/>
-                    <TextBlock Text="{Binding List.Selected.Agility, Mode=OneWay}"/>
+                    <TextBlock Text="{Binding List.Selected.Agility}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Value: "/>
-                    <TextBlock Text="{Binding List.Selected.Value, Mode=OneWay}"/>
+                    <TextBlock Text="{Binding List.Selected.Value}"/>
                 </StackPanel>
             </StackPanel>
         </Canvas>
@@ -55,7 +55,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Button Content="Shop" Grid.Column="0"/>
-            <Button Content="Edit" Grid.Column="1"/>
+            <Button Content="Edit" Command="{Binding EditCommand}" Grid.Column="1"/>
         </Grid>
     </Grid>
 </Window>

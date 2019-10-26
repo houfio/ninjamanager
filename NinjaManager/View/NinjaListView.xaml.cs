@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace NinjaManager.View.NinjaList
+namespace NinjaManager.View
 {
     public partial class NinjaListView : Window
     {

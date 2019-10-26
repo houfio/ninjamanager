@@ -2,9 +2,9 @@
 
 namespace NinjaManager.View
 {
-    public partial class AddNinjaView : Window 
+    public partial class EditNinjaView : Window 
     {
-        public AddNinjaView()
+        public EditNinjaView()
         {
             InitializeComponent();
         }
