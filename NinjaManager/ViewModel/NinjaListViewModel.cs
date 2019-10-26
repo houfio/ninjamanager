@@ -16,9 +16,9 @@ namespace NinjaManager.ViewModel
         public ICommand AddNinjaCommand { get; }
         public ICommand DeleteNinjaCommand { get; }
         public ICommand ShowNinjaCommand { get; }
-        public NinjaModel Selected { get => Ninjas[_selected]; set => Set(ref _selected, Ninjas.IndexOf(value)); }
+        public NinjaModel Selected { get => _selected == -1 ? null : Ninjas[_selected]; set => Set(ref _selected, value == null ? -1 : Ninjas.IndexOf(value)); }
 
-        private int _selected;
+        private int _selected = -1;
         private InventoryView _inventoryView;
         private AddNinjaView _addView;
 
