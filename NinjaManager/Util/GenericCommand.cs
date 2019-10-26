@@ -20,6 +20,11 @@ namespace NinjaManager.Util
 
         public void Execute(object parameter)
         {
+            if (!(parameter is T))
+            {
+                return;
+            }
+
             Execute((T)parameter, _view);
         }
 
@@ -27,6 +32,11 @@ namespace NinjaManager.Util
 
         public bool CanExecute(object parameter)
         {
+            if (!(parameter is T))
+            {
+                return false;
+            }
+
             return CanExecute((T)parameter, _view);
         }
 
