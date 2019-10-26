@@ -1,4 +1,5 @@
 ﻿using NinjaManager.Command;
+using NinjaManager.Model;
 using NinjaManager.Util;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -9,11 +10,9 @@ namespace NinjaManager.ViewModel
     {
         public NinjaListModel List { get; }
         public ICommand SaveCommand { get; }
-        public string Name { get => _name; set => Set(ref _name, value); }
-        public int Gold { get => _gold; set => Set(ref _gold, value); }
+        public NinjaModel Ninja { get => _ninja; set => Set(ref _ninja, value); }
 
-        private string _name;
-        private int _gold;
+        private NinjaModel _ninja;
 
         public EditNinjaViewModel(NinjaListModel list)
         {
@@ -39,8 +38,7 @@ namespace NinjaManager.ViewModel
 
         private void UpdateDefault()
         {
-            Name = List.Selected.Name;
-            Gold = List.Selected.Gold;
+            Ninja = List.Selected.Clone();
         }
     }
 }

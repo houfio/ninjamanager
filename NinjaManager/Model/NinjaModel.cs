@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace NinjaManager.Model
 {
-    public class NinjaModel : GenericModel<Ninja>
+    public class NinjaModel : GenericModel<Ninja, NinjaModel>
     {
         public int Id => Raw.Id;
 
@@ -66,9 +66,27 @@ namespace NinjaManager.Model
             return model;
         }
 
+        public override NinjaModel Clone()
+        {
+            return new NinjaModel
+            {
+                Raw = new Ninja()
+                {
+                    Name = Name,
+                    Gold = Gold
+                }
+            };
+        }
+
+        public override void Copy(NinjaModel from)
+        {
+            Name = from.Name;
+            Gold = from.Gold;
+        }
+
         public void AddEquipment(EquipmentModel equipment)
         {
-            if (GetEquipment(equipment.Category) != null || Gold < equipment.Price)
+            if (Id == 0 || GetEquipment(equipment.Category) != null || Gold < equipment.Price)
             {
                 return;
             }
@@ -92,7 +110,7 @@ namespace NinjaManager.Model
         {
             var equipment = Equipment.Where((e) => e.Id == id).FirstOrDefault();
 
-            if (equipment == null)
+            if (Id == 0 || equipment == null)
             {
                 return;
             }

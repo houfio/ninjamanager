@@ -2,7 +2,7 @@
 
 namespace NinjaManager.Util
 {
-    public class GenericModel<T> : ViewModelBase where T : new()
+    public abstract class GenericModel<T, V> : ViewModelBase where T : new() where V : GenericModel<T, V>
     {
         public T Raw { get; protected set; }
 
@@ -14,6 +14,10 @@ namespace NinjaManager.Util
         {
             Raw = model;
         }
+
+        public abstract V Clone();
+
+        public abstract void Copy(V from);
 
         public void RaisePropertiesChanged(params string[] properties)
         {

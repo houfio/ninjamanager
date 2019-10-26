@@ -19,8 +19,9 @@ namespace NinjaManager.Command
 
                 if (ninja != null)
                 {
-                    view.List.Selected.Name = ninja.Name = view.Name;
-                    view.List.Selected.Gold = ninja.Gold = view.Gold;
+                    ninja.Name = view.Ninja.Name;
+                    ninja.Gold = view.Ninja.Gold;
+                    view.List.Selected.Copy(view.Ninja);
 
                     entities.SaveChanges();
                 }
@@ -31,7 +32,7 @@ namespace NinjaManager.Command
 
         public override bool CanExecute(GenericView args, EditNinjaViewModel view)
         {
-            return !string.IsNullOrEmpty(view.Name);
+            return !string.IsNullOrEmpty(view.Ninja.Name);
         }
     }
 }

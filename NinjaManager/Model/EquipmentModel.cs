@@ -3,7 +3,7 @@ using NinjaManager.Util;
 
 namespace NinjaManager.Model
 {
-    public class EquipmentModel : GenericModel<Equipment>
+    public class EquipmentModel : GenericModel<Equipment, EquipmentModel>
     {
         public int Id => Raw.Id;
 
@@ -73,6 +73,32 @@ namespace NinjaManager.Model
             {
                 Raw = raw
             };
+        }
+
+        public override EquipmentModel Clone()
+        {
+            return new EquipmentModel()
+            {
+                Raw = new Equipment()
+                {
+                    Name = Name,
+                    Price = Price,
+                    Strength = Strength,
+                    Intelligence = Intelligence,
+                    Agility = Agility,
+                    Category = Category
+                }
+            };
+        }
+
+        public override void Copy(EquipmentModel from)
+        {
+            Name = from.Name;
+            Price = from.Price;
+            Strength = from.Strength;
+            Intelligence = from.Intelligence;
+            Agility = from.Agility;
+            Category = from.Category;
         }
     }
 }
