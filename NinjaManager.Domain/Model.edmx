@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="NinjaManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Order" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="Id" />
@@ -33,6 +40,18 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Gold" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Equipment_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_InventoryItem_Equipment">
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
@@ -58,9 +77,14 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="NinjaManagerModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ninja" EntityType="Self.Ninja" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Equipment_Category" Association="Self.FK_Equipment_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
           <AssociationSet Name="FK_InventoryItem_Equipment" Association="Self.FK_InventoryItem_Equipment">
             <End Role="Equipment" EntitySet="Equipment" />
             <End Role="Inventory" EntitySet="Inventory" />
@@ -75,6 +99,14 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NinjaManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Order" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Equipments" Relationship="Self.FK_Equipment_Category" FromRole="Category" ToRole="Equipment" />
+        </EntityType>
         <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="Id" />
@@ -86,6 +118,7 @@
           <Property Name="Intelligence" Type="Int32" Nullable="false" />
           <Property Name="Agility" Type="Int32" Nullable="false" />
           <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Category1" Relationship="Self.FK_Equipment_Category" FromRole="Equipment" ToRole="Category" />
           <NavigationProperty Name="Ninjas" Relationship="Self.Inventory" FromRole="Equipment" ToRole="Ninja" />
         </EntityType>
         <EntityType Name="Ninja">
@@ -97,13 +130,30 @@
           <Property Name="Gold" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Equipments" Relationship="Self.Inventory" FromRole="Ninja" ToRole="Equipment" />
         </EntityType>
+        <Association Name="FK_Equipment_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Inventory">
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
           <End Role="Ninja" Type="Self.Ninja" Multiplicity="*" />
         </Association>
         <EntityContainer Name="NinjaManagerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Equipments" EntityType="Self.Equipment" />
           <EntitySet Name="Ninjas" EntityType="Self.Ninja" />
+          <AssociationSet Name="FK_Equipment_Category" Association="Self.FK_Equipment_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Equipment" EntitySet="Equipments" />
+          </AssociationSet>
           <AssociationSet Name="Inventory" Association="Self.Inventory">
             <End Role="Equipment" EntitySet="Equipments" />
             <End Role="Ninja" EntitySet="Ninjas" />
@@ -115,6 +165,14 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="NinjaManagerModelStoreContainer" CdmEntityContainer="NinjaManagerEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="NinjaManagerModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Equipments">
             <EntityTypeMapping TypeName="NinjaManagerModel.Equipment">
               <MappingFragment StoreEntitySet="Equipment">

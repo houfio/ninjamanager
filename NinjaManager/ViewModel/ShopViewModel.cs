@@ -15,7 +15,7 @@ namespace NinjaManager.ViewModel
 
             using (var entities = new NinjaManagerEntities())
             {
-                Categories = new ObservableCollection<string>(entities.Equipments.Select((e) => e.Category).Distinct().OrderBy((c) => c).ToList());
+                Categories = new ObservableCollection<string>(entities.Categories.OrderBy((c) => c.Order).Select((c) => c.Name).ToList());
             }
         }
     }
