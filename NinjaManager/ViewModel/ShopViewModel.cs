@@ -1,11 +1,10 @@
-﻿using GalaSoft.MvvmLight;
-using NinjaManager.Domain;
+﻿using NinjaManager.Domain;
 using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace NinjaManager.ViewModel
 {
-    public class ShopViewModel : ViewModelBase
+    public class ShopViewModel : GenericViewModel
     {
         public NinjaListModel List { get; }
         public Collection<string> Categories { get; }

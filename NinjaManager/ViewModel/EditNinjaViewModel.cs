@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using NinjaManager.Domain;
 using System.Linq;
 using System.Windows;
@@ -7,7 +6,7 @@ using System.Windows.Input;
 
 namespace NinjaManager.ViewModel
 {
-    public class EditNinjaViewModel : ViewModelBase
+    public class EditNinjaViewModel : GenericViewModel
     {
         public string Name { get => _name; set => Set(ref _name, value); }
         public int Gold { get => _gold; set => Set(ref _gold, value); }

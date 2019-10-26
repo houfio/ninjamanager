@@ -1,13 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NinjaManager.View;
-using System;
-using System.Windows;
 using System.Windows.Input;
 
 namespace NinjaManager.ViewModel
 {
-    public class InventoryViewModel : ViewModelBase, IClosable
+    public class InventoryViewModel : GenericViewModel, IClosable
     {
         public NinjaListModel List { get; }
         public ICommand EditCommand { get; }
@@ -36,32 +34,6 @@ namespace NinjaManager.ViewModel
         private void Shop()
         {
             OpenWindow(ref _shopWindow, () => _shopWindow = null);
-        }
-
-        private void OpenWindow<T>(ref T window, Action close) where T : Window, new()
-        {
-            if (window != null)
-            {
-                return;
-            }
-
-            window = new T();
-            window.Closed += delegate
-            {
-                close();
-            };
-            window.Show();
-        }
-
-        private void CloseWindows(params Window[] windows)
-        {
-            foreach (var window in windows)
-            {
-                if (window != null)
-                {
-                    window.Close();
-                }
-            }
         }
     }
 }

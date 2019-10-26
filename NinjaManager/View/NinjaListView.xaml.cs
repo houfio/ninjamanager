@@ -7,6 +7,14 @@ namespace NinjaManager.View
         public NinjaListView()
         {
             InitializeComponent();
+
+            Closed += delegate
+            {
+                if (DataContext is IClosable)
+                {
+                    ((IClosable)DataContext).Close();
+                }
+            };
         }
     }
 }

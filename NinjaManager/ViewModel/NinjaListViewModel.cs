@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using NinjaManager.Domain;
 using NinjaManager.Model;
 using NinjaManager.View;
@@ -10,7 +9,7 @@ using System.Windows.Input;
 
 namespace NinjaManager.ViewModel
 {
-    public class NinjaListModel : ViewModelBase
+    public class NinjaListModel : GenericViewModel, IClosable
     {
         public Collection<NinjaModel> Ninjas { get; set; }
         public ICommand AddNinjaCommand { get; }
@@ -19,7 +18,8 @@ namespace NinjaManager.ViewModel
         public NinjaModel Selected { get => Ninjas[_selected]; set => Set(ref _selected, Ninjas.IndexOf(value)); }
 
         private int _selected;
-        private Window _inventoryView;
+        private InventoryView _inventoryView;
+        private AddNinjaView _addView;
 
         public NinjaListModel()
         {
@@ -33,9 +33,14 @@ namespace NinjaManager.ViewModel
             }
         }
 
+        public void Close()
+        {
+            CloseWindows(_inventoryView, _addView);
+        }
+
         private void AddNinja()
         {
-            new AddNinjaView().Show();
+            OpenWindow(ref _addView, () => _addView = null);
         }
 
         private void DeleteNinja(NinjaModel ninja)
@@ -66,17 +71,7 @@ namespace NinjaManager.ViewModel
         {
             Selected = ninja;
 
-            if (_inventoryView != null)
-            {
-                return;
-            }
-
-            _inventoryView = new InventoryView();
-            _inventoryView.Closed += delegate
-            {
-                _inventoryView = null;
-            };
-            _inventoryView.Show();
+            OpenWindow(ref _inventoryView, () => _inventoryView = null);
         }
     }
 }

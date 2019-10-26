@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using NinjaManager.Domain;
 using NinjaManager.Model;
 using System.Windows;
@@ -7,7 +6,7 @@ using System.Windows.Input;
 
 namespace NinjaManager.ViewModel
 {
-    public class AddNinjaViewModel : ViewModelBase
+    public class AddNinjaViewModel : GenericViewModel
     {
         public NinjaModel Ninja { get; } = new NinjaModel()
         {
