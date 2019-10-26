@@ -10,7 +10,7 @@ namespace NinjaManager
             Closing += HandleClosing;
         }
 
-        private void HandleClosing(object sender, CancelEventArgs e)
+        private void HandleClosing(object sender, CancelEventArgs args)
         {
             if (DataContext is IClosable)
             {

@@ -1,35 +1,34 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
-using System.Windows;
 
 namespace NinjaManager
 {
     public class GenericViewModel : ViewModelBase
     {
-        protected void OpenWindow<T>(ref T window, Action close) where T : Window, new()
+        protected void OpenWindow<T>(ref T view, Action close) where T : GenericView, new()
         {
-            if (window != null)
+            if (view != null)
             {
-                window.Focus();
+                view.Focus();
 
                 return;
             }
 
-            window = new T();
-            window.Closed += delegate
+            view = new T();
+            view.Closed += delegate
             {
                 close();
             };
-            window.Show();
+            view.Show();
         }
 
-        protected void CloseWindows(params Window[] windows)
+        protected void CloseWindows(params GenericView[] views)
         {
-            foreach (var window in windows)
+            foreach (var view in views)
             {
-                if (window != null)
+                if (view != null)
                 {
-                    window.Close();
+                    view.Close();
                 }
             }
         }
