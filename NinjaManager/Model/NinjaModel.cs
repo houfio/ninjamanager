@@ -67,7 +67,7 @@ namespace NinjaManager.Model
 
         public void AddEquipment(EquipmentModel equipment)
         {
-            if (GetEquipment(equipment.Category) != null)
+            if (GetEquipment(equipment.Category) != null || Gold < equipment.Price)
             {
                 return;
             }
@@ -76,6 +76,7 @@ namespace NinjaManager.Model
             {
                 entities.Ninjas.Attach(Raw);
 
+                Gold -= equipment.Price;
                 Raw.Equipments.Add(equipment.Raw);
 
                 entities.SaveChanges();
@@ -98,6 +99,7 @@ namespace NinjaManager.Model
             {
                 entities.Ninjas.Attach(Raw);
 
+                Gold += equipment.Price;
                 Raw.Equipments.Remove(equipment.Raw);
 
                 entities.SaveChanges();
