@@ -32,6 +32,11 @@
             <TextBlock Text="BOOTS" FontWeight="Bold" FontSize="8" Foreground="#FF1B1B33" Canvas.Left="530" Canvas.Top="246"/>
             <TextBlock Text="{Binding List.Selected.Boots.Name}" Background="#FF1B1B33" Foreground="White" Width="100" Padding="8" Canvas.Left="530" Canvas.Top="257"/>
             <StackPanel Canvas.Left="25" Canvas.Bottom="25">
+                <TextBlock Text="{Binding List.Selected.Name}" FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Gold: "/>
+                    <TextBlock Text="{Binding List.Selected.Gold}"/>
+                </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Strength: "/>
                     <TextBlock Text="{Binding List.Selected.Strength}"/>
