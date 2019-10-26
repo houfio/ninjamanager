@@ -10,6 +10,8 @@ namespace NinjaManager
         {
             if (window != null)
             {
+                window.Focus();
+
                 return;
             }
 
