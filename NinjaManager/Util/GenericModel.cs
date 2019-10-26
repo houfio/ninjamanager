@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 
-namespace NinjaManager
+namespace NinjaManager.Util
 {
     public class GenericModel<T> : ViewModelBase where T : new()
     {

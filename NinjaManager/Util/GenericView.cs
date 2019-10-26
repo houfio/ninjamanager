@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 
-namespace NinjaManager
+namespace NinjaManager.Util
 {
     public class GenericView : Window
     {

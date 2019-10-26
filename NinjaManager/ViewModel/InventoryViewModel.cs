@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using NinjaManager.Model;
+using NinjaManager.Util;
 using NinjaManager.View;
 using System.Collections.Generic;
 using System.Windows;

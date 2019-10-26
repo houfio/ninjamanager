@@ -1,7 +1,8 @@
 using CommonServiceLocator;
 using GalaSoft.MvvmLight.Ioc;
+using NinjaManager.ViewModel;
 
-namespace NinjaManager.ViewModel
+namespace NinjaManager.Util
 {
     public class ViewModelLocator
     {

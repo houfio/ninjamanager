@@ -1,4 +1,5 @@
 ﻿using NinjaManager.Domain;
+using NinjaManager.Util;
 
 namespace NinjaManager.Model
 {

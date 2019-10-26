@@ -1,7 +1,7 @@
 ﻿<local:GenericView x:Class="NinjaManager.View.NinjaListView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:NinjaManager"
+        xmlns:local="clr-namespace:NinjaManager.Util"
         DataContext="{Binding NinjaList, Source={StaticResource Locator}}"
         Title="Ninja Manager - Overview" Height="450" Width="450" ResizeMode="NoResize">
     <Grid>

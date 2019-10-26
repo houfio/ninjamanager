@@ -1,6 +1,6 @@
-﻿using GalaSoft.MvvmLight.Command;
-using NinjaManager.Domain;
+﻿using NinjaManager.Domain;
 using NinjaManager.Model;
+using NinjaManager.Util;
 using System.Windows;
 using System.Windows.Input;
 
@@ -20,18 +20,11 @@ namespace NinjaManager.ViewModel
         {
             _model = model;
 
-            SaveCommand = new RelayCommand<Window>(Save);
+            SaveCommand = new BlockableCommand<Window>(Save, CanSave);
         }
 
         private void Save(Window window)
         {
-            if (string.IsNullOrEmpty(Ninja.Name))
-            {
-                MessageBox.Show("Please enter a name");
-
-                return;
-            }
-
             using (var entities = new NinjaManagerEntities())
             {
                 entities.Ninjas.Add(Ninja.Raw);
@@ -40,6 +33,11 @@ namespace NinjaManager.ViewModel
 
             _model.Ninjas.Add(Ninja);
             window.Close();
+        }
+
+        private bool CanSave(Window window)
+        {
+            return !string.IsNullOrEmpty(Ninja.Name);
         }
     }
 }

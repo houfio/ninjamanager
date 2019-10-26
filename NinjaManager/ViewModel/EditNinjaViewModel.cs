@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using NinjaManager.Domain;
+using NinjaManager.Util;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;

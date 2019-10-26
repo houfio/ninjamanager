@@ -1,4 +1,4 @@
-﻿namespace NinjaManager
+﻿namespace NinjaManager.Util
 {
     public interface IClosable
     {
