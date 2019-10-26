@@ -2,6 +2,7 @@
 using NinjaManager.Model;
 using NinjaManager.View;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 
 namespace NinjaManager.ViewModel
@@ -41,6 +42,13 @@ namespace NinjaManager.ViewModel
 
         private void Clear()
         {
+            var result = MessageBox.Show($"Are you sure you want clear {List.Selected.Name}'s inventory?", "Ninja Manager", MessageBoxButton.YesNo);
+
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+
             foreach (var equipment in new List<EquipmentModel>(List.Selected.Equipment))
             {
                 List.Selected.RemoveEquipment(equipment.Id);
