@@ -57,9 +57,9 @@ namespace NinjaManager.Model
                 Raw = raw
             };
 
-            foreach (var inventory in raw.Inventories)
+            foreach (var equipment in raw.Equipments)
             {
-                model.AddEquipment(EquipmentModel.FromRaw(inventory.Equipment));
+                model.Equipment.Add(EquipmentModel.FromRaw(equipment));
             }
 
             return model;
@@ -70,6 +70,15 @@ namespace NinjaManager.Model
             if (GetEquipment(equipment.Category) != null)
             {
                 return;
+            }
+
+            using (var entities = new NinjaManagerEntities())
+            {
+                entities.Ninjas.Attach(Raw);
+
+                Raw.Equipments.Add(equipment.Raw);
+
+                entities.SaveChanges();
             }
 
             Equipment.Add(equipment);
@@ -83,6 +92,15 @@ namespace NinjaManager.Model
             if (equipment == null)
             {
                 return;
+            }
+
+            using (var entities = new NinjaManagerEntities())
+            {
+                entities.Ninjas.Attach(Raw);
+
+                Raw.Equipments.Remove(equipment.Raw);
+
+                entities.SaveChanges();
             }
 
             Equipment.Remove(equipment);

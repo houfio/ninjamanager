@@ -26,7 +26,6 @@ namespace NinjaManager.Domain
         }
     
         public virtual DbSet<Equipment> Equipments { get; set; }
-        public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<Ninja> Ninjas { get; set; }
     }
 }

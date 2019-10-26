@@ -4,12 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="983e63fe6da64072b2229d9d02fc9ef6" Name="Diagram1">
+      <Diagram DiagramId="74991745d1254e1a98d6056f23bd87a4" Name="Diagram1">
         <EntityTypeShape EntityType="NinjaManagerModel.Equipment" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="NinjaManagerModel.Inventory" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NinjaManagerModel.Ninja" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <AssociationConnector Association="NinjaManagerModel.FK_InventoryItem_Equipment" ManuallyRouted="false" />
-        <AssociationConnector Association="NinjaManagerModel.FK_InventoryItem_Ninja" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NinjaManagerModel.Ninja" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="NinjaManagerModel.Inventory" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

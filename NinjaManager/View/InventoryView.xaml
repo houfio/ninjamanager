@@ -17,7 +17,7 @@
             <TextBlock Text="{Binding List.Selected.Shoulders.Name}" Background="#FF1B1B33" Foreground="White" Width="100" Padding="8" Canvas.Left="170" Canvas.Top="39"/>
             <Line X1="170" Y1="164" X2="355" Y2="212" StrokeThickness="5" Stroke="#FFCE4149"/>
             <TextBlock Text="BELT" FontWeight="Bold" FontSize="8" Foreground="#FF1B1B33" Canvas.Left="120" Canvas.Top="137"/>
-            <TextBlock Text="{Binding List.Selected.Belt.Name}" Background="#FFCE4149" Foreground="#FF1B1B33" Width="100" Padding="8" Canvas.Left="120" Canvas.Top="148"/>
+            <TextBlock Text="{Binding List.Selected.Belt.Name}" Background="#FFCE4149" Foreground="White" Width="100" Padding="8" Canvas.Left="120" Canvas.Top="148"/>
             <Line X1="220" Y1="273" X2="350" Y2="260" Stroke="#FF1B1B33" StrokeThickness="5"/>
             <TextBlock Text="LEGS" FontWeight="Bold" FontSize="8" Foreground="#FF1B1B33" Canvas.Left="170" Canvas.Top="246"/>
             <TextBlock Text="{Binding List.Selected.Legs.Name}" Background="#FF1B1B33" Foreground="White" Width="100" Padding="8" Canvas.Left="170" Canvas.Top="257"/>

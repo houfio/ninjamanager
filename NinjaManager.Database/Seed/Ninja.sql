@@ -2,9 +2,9 @@
 
 MERGE INTO dbo.Ninja AS Target
 USING (VALUES
-	(1, 'Mik Rijer', 1000),
-	(2, 'Ser Garis', 1000),
-	(3, 'Sartijn Muurmans', 1000)
+	(1, 'Mik Rijer', 3000),
+	(2, 'Ser Garis', 2500),
+	(3, 'Sartijn Muurmans', 3500)
 )
 AS Source (Id, Name, Gold)
 ON Target.Id = Source.Id
