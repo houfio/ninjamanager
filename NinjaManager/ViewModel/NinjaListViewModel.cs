@@ -12,7 +12,7 @@ namespace NinjaManager.ViewModel
 {
     public class NinjaListModel : ViewModelBase
     {
-        public ObservableCollection<NinjaModel> Ninjas { get; set; }
+        public Collection<NinjaModel> Ninjas { get; set; }
         public ICommand AddNinjaCommand { get; }
         public ICommand DeleteNinjaCommand { get; }
         public ICommand ShowNinjaCommand { get; }

@@ -4,6 +4,34 @@
         DataContext="{Binding Shop, Source={StaticResource Locator}}"
         Title="Ninja Manager - Shop" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Shop" FontSize="22" Margin="0,8,0,8" HorizontalAlignment="Center" Grid.Row="0" Grid.ColumnSpan="3"/>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <DataGrid ItemsSource="{Binding Categories}" ScrollViewer.VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Category" Binding="{Binding}" Width="*" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        </Grid>
     </Grid>
 </Window>
