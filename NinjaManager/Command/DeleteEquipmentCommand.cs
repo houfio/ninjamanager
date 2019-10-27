@@ -20,15 +20,23 @@ namespace NinjaManager.Command
                 return;
             }
 
+            var equipment = view.Selected;
+
+            foreach (var ninja in view.List.Ninjas)
+            {
+                ninja.RemoveEquipment(equipment.Id);
+            }
+
             using (var entities = new NinjaManagerEntities())
             {
-                entities.Equipments.Attach(view.Selected.Raw);
-                entities.Equipments.Remove(view.Selected.Raw);
-
-                view.List.Selected.Equipment.Remove(view.Selected);
+                entities.Equipments.Attach(equipment.Raw);
+                entities.Equipments.Remove(equipment.Raw);
 
                 entities.SaveChanges();
             }
+
+            view.SelectEquipment(null);
+            view.Equipment.Remove(equipment);
         }
 
         public override bool CanExecute(object args, ShopViewModel view)

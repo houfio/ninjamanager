@@ -26,7 +26,7 @@ namespace NinjaManager.ViewModel
         public Visibility EquipmentVisiblity => Equipment.Count > 0 ? Visibility.Visible : Visibility.Hidden;
         public Visibility DetailVisiblity => Selected != null ? Visibility.Visible : Visibility.Hidden;
 
-        private int _selected;
+        private int _selected = -1;
         private AddEquipmentView _addView;
 
         public ShopViewModel(NinjaListModel list)
@@ -51,6 +51,12 @@ namespace NinjaManager.ViewModel
             CloseWindows(_addView);
         }
 
+        public void SelectEquipment(EquipmentModel equipment)
+        {
+            Selected = equipment;
+            RaisePropertyChanged(nameof(DetailVisiblity));
+        }
+
         private void SelectCategory(string category)
         {
             using (var entities = new NinjaManagerEntities())
@@ -65,13 +71,8 @@ namespace NinjaManager.ViewModel
                 }
             }
 
+            SelectEquipment(null);
             RaisePropertyChanged(nameof(EquipmentVisiblity));
-        }
-
-        private void SelectEquipment(EquipmentModel equipment)
-        {
-            Selected = equipment;
-            RaisePropertyChanged(nameof(DetailVisiblity));
         }
     }
 }
