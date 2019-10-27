@@ -78,7 +78,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Edit" Grid.Column="0"/>
+                    <Button Content="Edit" Command="{Binding EditEquipmentCommand}" Grid.Column="0"/>
                     <Button Content="Remove" Command="{Binding DeleteCommand}" Grid.Column="1"/>
                 </Grid>
             </StackPanel>

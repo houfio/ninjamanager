@@ -101,6 +101,7 @@
     <Compile Include="Util\IClosable.cs" />
     <Compile Include="Model\EquipmentModel.cs" />
     <Compile Include="Model\NinjaModel.cs" />
+    <Compile Include="ViewModel\EditEquipmentViewModel.cs" />
     <Compile Include="ViewModel\AddEquipmentViewModel.cs" />
     <Compile Include="ViewModel\AddNinjaViewModel.cs" />
     <Compile Include="ViewModel\EditNinjaViewModel.cs" />
@@ -112,6 +113,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModel\ShopViewModel.cs" />
+    <Compile Include="View\EditEquipmentView.xaml.cs">
+      <DependentUpon>EditEquipmentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddEquipmentView.xaml.cs">
       <DependentUpon>AddEquipmentView.xaml</DependentUpon>
     </Compile>
@@ -199,6 +203,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\EditEquipmentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\AddEquipmentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

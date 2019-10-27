@@ -1,0 +1,65 @@
+﻿<local:GenericView x:Class="NinjaManager.View.EditEquipmentView"
+        x:Name="Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:NinjaManager.Util"
+        DataContext="{Binding EditEquipment, Source={StaticResource Locator}}"
+        Title="Ninja Manager - Add Equipment" Height="220" Width="300" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Edit" FontSize="22" Margin="0,8,0,8" HorizontalAlignment="Center" Grid.Row="0"/>
+        <Grid Margin="8" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Name"/>
+                <TextBlock Text="Price"/>
+                <TextBlock Text="Strength"/>
+                <TextBlock Text="Intelligence"/>
+                <TextBlock Text="Agility"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBox Text="{Binding Equipment.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Equipment.Price}" Grid.Column="0"/>
+                    <Slider Value="{Binding Equipment.Price}" Maximum="2500" Grid.Column="1"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Equipment.Strength}" Grid.Column="0"/>
+                    <Slider Value="{Binding Equipment.Strength}" Minimum="-250" Maximum="250" Grid.Column="1"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Equipment.Intelligence}" Grid.Column="0"/>
+                    <Slider Value="{Binding Equipment.Intelligence}" Minimum="-250" Maximum="250" Grid.Column="1"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Equipment.Agility}" Grid.Column="0"/>
+                    <Slider Value="{Binding Equipment.Agility}" Minimum="-250" Maximum="250" Grid.Column="1"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+        <Button Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=Window}" Grid.Row="2">Save</Button>
+    </Grid>
+</local:GenericView>
