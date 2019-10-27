@@ -12,25 +12,121 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Inventory" FontSize="22" Margin="0,8,0,8" HorizontalAlignment="Center" Grid.Row="0"/>
         <Canvas Grid.Row="1">
-            <Image Source="/NinjaManager;component/Image/Ninja.jpg" Height="250" Width="250" Canvas.Left="275" Canvas.Top="39"/>
-            <Line X1="220" Y1="55" X2="350" Y2="175" Stroke="#FF1B1B33" StrokeThickness="5"/>
+           <Line X1="220" Y1="55" X2="350" Y2="175" Stroke="#FF1B1B33" StrokeThickness="5"/>
             <TextBlock Text="SHOULDERS" FontWeight="Bold" FontSize="8" Foreground="#FF1B1B33" Canvas.Left="170" Canvas.Top="28"/>
             <TextBlock Text="{Binding List.Selected.Shoulders.Name}" Background="#FF1B1B33" Foreground="White" Width="100" Padding="8" Canvas.Left="170" Canvas.Top="39"/>
-            <Line X1="170" Y1="164" X2="355" Y2="212" StrokeThickness="5" Stroke="#FFCE4149"/>
+            <Line X1="170" Y1="164" X2="355" Y2="212" Stroke="#FF1B1B33" StrokeThickness="5"/>
             <TextBlock Text="BELT" FontWeight="Bold" FontSize="8" Foreground="#FF1B1B33" Canvas.Left="120" Canvas.Top="137"/>
-            <TextBlock Text="{Binding List.Selected.Belt.Name}" Background="#FFCE4149" Foreground="White" Width="100" Padding="8" Canvas.Left="120" Canvas.Top="148"/>
+            <TextBlock Text="{Binding List.Selected.Belt.Name}" Background="#FF1B1B33" Foreground="White" Width="100" Padding="8" Canvas.Left="120" Canvas.Top="148"/>
             <Line X1="220" Y1="273" X2="350" Y2="260" Stroke="#FF1B1B33" StrokeThickness="5"/>
             <TextBlock Text="LEGS" FontWeight="Bold" FontSize="8" Foreground="#FF1B1B33" Canvas.Left="170" Canvas.Top="246"/>
             <TextBlock Text="{Binding List.Selected.Legs.Name}" Background="#FF1B1B33" Foreground="White" Width="100" Padding="8" Canvas.Left="170" Canvas.Top="257"/>
-            <Line X1="580" Y1="55" X2="410" Y2="90" Stroke="#FFEFC8A7" StrokeThickness="5"/>
+            <Line X1="580" Y1="55" X2="410" Y2="90" Stroke="#FF1B1B33" StrokeThickness="5"/>
             <TextBlock Text="HEAD" FontWeight="Bold" FontSize="8" Foreground="#FF1B1B33" Canvas.Left="530" Canvas.Top="28"/>
-            <TextBlock Text="{Binding List.Selected.Head.Name}" Background="#FFEFC8A7" Foreground="#FF1B1B33" Width="100" Padding="8" Canvas.Left="530" Canvas.Top="39"/>
+            <TextBlock Text="{Binding List.Selected.Head.Name}" Background="#FF1B1B33" Foreground="White" Width="100" Padding="8" Canvas.Left="530" Canvas.Top="39"/>
             <Line X1="630" Y1="164" X2="410" Y2="184" Stroke="#FF1B1B33" StrokeThickness="5"/>
             <TextBlock Text="CHEST" FontWeight="Bold" FontSize="8" Foreground="#FF1B1B33" Canvas.Left="580" Canvas.Top="137"/>
             <TextBlock Text="{Binding List.Selected.Chest.Name}" Background="#FF1B1B33" Foreground="White" Width="100" Padding="8" Canvas.Left="580" Canvas.Top="148"/>
             <Line X1="580" Y1="273" X2="436" Y2="284" Stroke="#FF1B1B33" StrokeThickness="5"/>
             <TextBlock Text="BOOTS" FontWeight="Bold" FontSize="8" Foreground="#FF1B1B33" Canvas.Left="530" Canvas.Top="246"/>
             <TextBlock Text="{Binding List.Selected.Boots.Name}" Background="#FF1B1B33" Foreground="White" Width="100" Padding="8" Canvas.Left="530" Canvas.Top="257"/>
+            <Image Source="/NinjaManager;component/Image/Full.png" Height="250" Width="250" Canvas.Left="275" Canvas.Top="39">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding List.Selected.Full}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <Image Source="/NinjaManager;component/Image/Ninja.png" Height="250" Width="250" Canvas.Left="275" Canvas.Top="39"/>
+            <Image Source="/NinjaManager;component/Image/Head.png" Height="250" Width="250" Canvas.Left="275" Canvas.Top="39">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding List.Selected.Head}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <Image Source="/NinjaManager;component/Image/Chest.png" Height="250" Width="250" Canvas.Left="275" Canvas.Top="39">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding List.Selected.Chest}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <Image Source="/NinjaManager;component/Image/Legs.png" Height="250" Width="250" Canvas.Left="275" Canvas.Top="39">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding List.Selected.Legs}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <Image Source="/NinjaManager;component/Image/Boots.png" Height="250" Width="250" Canvas.Left="275" Canvas.Top="39">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding List.Selected.Boots}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <Image Source="/NinjaManager;component/Image/Shoulders.png" Height="250" Width="250" Canvas.Left="275" Canvas.Top="39">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding List.Selected.Shoulders}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <Image Source="/NinjaManager;component/Image/Belt.png" Height="250" Width="250" Canvas.Left="275" Canvas.Top="39">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding List.Selected.Belt}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <Image Source="/NinjaManager;component/Image/Empty.png" Height="250" Width="250" Canvas.Left="275" Canvas.Top="39">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding List.Selected.Legs}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
             <StackPanel Canvas.Left="25" Canvas.Bottom="25">
                 <TextBlock Text="{Binding List.Selected.Name}" FontWeight="Bold"/>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,16">

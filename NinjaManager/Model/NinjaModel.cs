@@ -49,6 +49,8 @@ namespace NinjaManager.Model
 
         public EquipmentModel Boots => GetEquipment(nameof(Boots));
 
+        public bool Full => Equipment.Count == 6;
+
         public Collection<EquipmentModel> Equipment { get; } = new ObservableCollection<EquipmentModel>();
 
         public static NinjaModel FromRaw(Ninja raw)
@@ -136,7 +138,7 @@ namespace NinjaManager.Model
 
         private void RaiseEquipmentChanged()
         {
-            RaisePropertiesChanged(nameof(Strength), nameof(Intelligence), nameof(Agility), nameof(Value), nameof(Head), nameof(Shoulders), nameof(Chest), nameof(Belt), nameof(Legs), nameof(Boots));
+            RaisePropertiesChanged(nameof(Strength), nameof(Intelligence), nameof(Agility), nameof(Value), nameof(Head), nameof(Shoulders), nameof(Chest), nameof(Belt), nameof(Legs), nameof(Boots), nameof(Full));
         }
     }
 }
