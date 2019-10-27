@@ -16,7 +16,7 @@ namespace NinjaManager.Command
             {
                 view.Equipment.Category = view.Shop.Equipment[0].Category;
 
-                entities.Equipments.Attach(view.Equipment.Raw);
+                entities.Equipments.Add(view.Equipment.Raw);
                 entities.SaveChanges();
             }
 
