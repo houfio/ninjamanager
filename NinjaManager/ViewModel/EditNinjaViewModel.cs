@@ -30,7 +30,7 @@ namespace NinjaManager.ViewModel
 
         private void HandlePropertyChange(object sender, PropertyChangedEventArgs args)
         {
-            if (args.PropertyName == "Selected")
+            if (args.PropertyName == nameof(List.Selected))
             {
                 UpdateDefault();
             }

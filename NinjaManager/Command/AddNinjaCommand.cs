@@ -24,7 +24,7 @@ namespace NinjaManager.Command
 
         public override bool CanExecute(GenericView args, AddNinjaViewModel view)
         {
-            return !string.IsNullOrEmpty(view.Ninja.Name);
+            return !string.IsNullOrWhiteSpace(view.Ninja.Name);
         }
     }
 }

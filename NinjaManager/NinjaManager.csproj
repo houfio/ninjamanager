@@ -85,8 +85,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\AddEquipmentCommand.cs" />
     <Compile Include="Command\AddNinjaCommand.cs" />
     <Compile Include="Command\BuyCommand.cs" />
+    <Compile Include="Command\DeleteEquipmentCommand.cs" />
     <Compile Include="Command\EditNinjaCommand.cs" />
     <Compile Include="Command\SellCommand.cs" />
     <Compile Include="Util\GenericCommand.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Util\IClosable.cs" />
     <Compile Include="Model\EquipmentModel.cs" />
     <Compile Include="Model\NinjaModel.cs" />
+    <Compile Include="ViewModel\AddEquipmentViewModel.cs" />
     <Compile Include="ViewModel\AddNinjaViewModel.cs" />
     <Compile Include="ViewModel\EditNinjaViewModel.cs" />
     <Compile Include="ViewModel\InventoryViewModel.cs" />
@@ -106,6 +109,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModel\ShopViewModel.cs" />
+    <Compile Include="View\AddEquipmentView.xaml.cs">
+      <DependentUpon>AddEquipmentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EditNinjaView.xaml.cs">
       <DependentUpon>EditNinjaView.xaml</DependentUpon>
     </Compile>
@@ -163,6 +169,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\AddEquipmentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\EditNinjaView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

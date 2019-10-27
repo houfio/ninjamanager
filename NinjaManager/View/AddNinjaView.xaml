@@ -22,7 +22,7 @@
                 <TextBlock Text="Gold"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <TextBox Text="{Binding Ninja.Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBox Text="{Binding Ninja.Name, UpdateSourceTrigger=PropertyChanged}"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
