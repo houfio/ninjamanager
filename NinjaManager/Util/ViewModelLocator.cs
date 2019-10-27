@@ -8,7 +8,7 @@ namespace NinjaManager.Util
     {
         public NinjaListModel NinjaList => ServiceLocator.Current.GetInstance<NinjaListModel>();
         public AddNinjaViewModel AddNinja => new AddNinjaViewModel(NinjaList);
-        public InventoryViewModel Inventory => new InventoryViewModel(NinjaList);
+        public InventoryViewModel Inventory => ServiceLocator.Current.GetInstance<InventoryViewModel>();
         public EditNinjaViewModel EditNinja => new EditNinjaViewModel(NinjaList);
         public ShopViewModel Shop => ServiceLocator.Current.GetInstance<ShopViewModel>();
         public AddEquipmentViewModel AddEquipment => new AddEquipmentViewModel(Shop);
