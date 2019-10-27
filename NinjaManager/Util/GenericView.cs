@@ -12,9 +12,9 @@ namespace NinjaManager.Util
 
         private void HandleClosing(object sender, CancelEventArgs args)
         {
-            if (DataContext is IClosable)
+            if (DataContext is IClosable closable)
             {
-                ((IClosable)DataContext).Close();
+                closable.Close();
             }
         }
     }
