@@ -8,13 +8,13 @@ namespace NinjaManager.ViewModel
 {
     public class EditNinjaViewModel : GenericViewModel, IClosable
     {
-        public NinjaListModel List { get; }
+        public NinjaListViewModel List { get; }
         public ICommand SaveCommand { get; }
         public NinjaModel Ninja { get => _ninja; set => Set(ref _ninja, value); }
 
         private NinjaModel _ninja;
 
-        public EditNinjaViewModel(NinjaListModel list)
+        public EditNinjaViewModel(NinjaListViewModel list)
         {
             List = list;
             SaveCommand = new EditNinjaCommand(this);

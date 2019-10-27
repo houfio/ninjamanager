@@ -7,14 +7,14 @@ namespace NinjaManager.ViewModel
 {
     public class AddNinjaViewModel : GenericViewModel
     {
-        public NinjaListModel List { get; }
+        public NinjaListViewModel List { get; }
         public NinjaModel Ninja { get; } = new NinjaModel()
         {
             Gold = 5000
         };
         public ICommand SaveCommand { get; }
 
-        public AddNinjaViewModel(NinjaListModel list)
+        public AddNinjaViewModel(NinjaListViewModel list)
         {
             List = list;
             SaveCommand = new AddNinjaCommand(this);

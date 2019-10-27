@@ -13,7 +13,7 @@ namespace NinjaManager.ViewModel
 {
     public class ShopViewModel : GenericViewModel, IClosable
     {
-        public NinjaListModel List { get; }
+        public NinjaListViewModel List { get; }
         public ICommand CategoryCommand { get; }
         public ICommand AddCommand { get; }
         public ICommand EquipmentCommand { get; }
@@ -31,7 +31,7 @@ namespace NinjaManager.ViewModel
         private AddEquipmentView _addView;
         private EditEquipmentView _editView;
 
-        public ShopViewModel(NinjaListModel list)
+        public ShopViewModel(NinjaListViewModel list)
         {
             List = list;
             CategoryCommand = new RelayCommand<string>(SelectCategory);

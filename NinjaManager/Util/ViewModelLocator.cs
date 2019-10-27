@@ -6,7 +6,7 @@ namespace NinjaManager.Util
 {
     public class ViewModelLocator
     {
-        public NinjaListModel NinjaList => ServiceLocator.Current.GetInstance<NinjaListModel>();
+        public NinjaListViewModel NinjaList => ServiceLocator.Current.GetInstance<NinjaListViewModel>();
         public AddNinjaViewModel AddNinja => new AddNinjaViewModel(NinjaList);
         public InventoryViewModel Inventory => ServiceLocator.Current.GetInstance<InventoryViewModel>();
         public EditNinjaViewModel EditNinja => new EditNinjaViewModel(NinjaList);
@@ -17,7 +17,7 @@ namespace NinjaManager.Util
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-            SimpleIoc.Default.Register<NinjaListModel>();
+            SimpleIoc.Default.Register<NinjaListViewModel>();
             SimpleIoc.Default.Register<InventoryViewModel>();
             SimpleIoc.Default.Register<ShopViewModel>();
         }

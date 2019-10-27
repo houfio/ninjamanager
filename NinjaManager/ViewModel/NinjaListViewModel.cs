@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace NinjaManager.ViewModel
 {
-    public class NinjaListModel : GenericViewModel, IClosable
+    public class NinjaListViewModel : GenericViewModel, IClosable
     {
         public Collection<NinjaModel> Ninjas { get; set; }
         public ICommand AddNinjaCommand { get; }
@@ -22,7 +22,7 @@ namespace NinjaManager.ViewModel
         private InventoryView _inventoryView;
         private AddNinjaView _addView;
 
-        public NinjaListModel()
+        public NinjaListViewModel()
         {
             AddNinjaCommand = new RelayCommand(() => OpenWindow(ref _addView, () => _addView = null));
             DeleteNinjaCommand = new RelayCommand<NinjaModel>(DeleteNinja);

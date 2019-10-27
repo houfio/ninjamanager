@@ -10,7 +10,7 @@ namespace NinjaManager.ViewModel
 {
     public class InventoryViewModel : GenericViewModel, IClosable
     {
-        public NinjaListModel List { get; }
+        public NinjaListViewModel List { get; }
         public ICommand ShopCommand { get; }
         public ICommand EditCommand { get; }
         public ICommand ClearCommand { get; }
@@ -18,7 +18,7 @@ namespace NinjaManager.ViewModel
         private EditNinjaView _editWindow;
         private ShopView _shopWindow;
 
-        public InventoryViewModel(NinjaListModel list)
+        public InventoryViewModel(NinjaListViewModel list)
         {
             List = list;
             ShopCommand = new RelayCommand(() => OpenWindow(ref _shopWindow, () => _shopWindow = null));
