@@ -49,6 +49,7 @@ namespace NinjaManager.ViewModel
         public void Close()
         {
             CloseWindows(_addView);
+            SelectCategory(null);
         }
 
         public void SelectEquipment(EquipmentModel equipment)
