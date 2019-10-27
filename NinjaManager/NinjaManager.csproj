@@ -92,6 +92,7 @@
     <Compile Include="Command\AddNinjaCommand.cs" />
     <Compile Include="Command\BuyCommand.cs" />
     <Compile Include="Command\DeleteEquipmentCommand.cs" />
+    <Compile Include="Command\EditEquipmentCommand.cs" />
     <Compile Include="Command\EditNinjaCommand.cs" />
     <Compile Include="Command\SellCommand.cs" />
     <Compile Include="Util\GenericCommand.cs" />

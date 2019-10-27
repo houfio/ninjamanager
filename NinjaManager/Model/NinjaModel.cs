@@ -131,6 +131,19 @@ namespace NinjaManager.Model
             RaiseEquipmentChanged();
         }
 
+        public void UpdateEquipment(int id, EquipmentModel equipment)
+        {
+            var current = Equipment.Where((e) => e.Id == id).FirstOrDefault();
+
+            if (current == null)
+            {
+                return;
+            }
+
+            Equipment[Equipment.IndexOf(current)].Copy(equipment);
+            RaiseEquipmentChanged();
+        }
+
         public EquipmentModel GetEquipment(string category)
         {
             return Equipment.Where((e) => e.Category == category).FirstOrDefault();

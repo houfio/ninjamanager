@@ -44,7 +44,7 @@
                     <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="*" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Content="Create" Command="{Binding AddEquipmentCommand}" Grid.Row="1"/>
+            <Button Content="Create" Command="{Binding AddCommand}" Grid.Row="1"/>
         </Grid>
         <Grid Visibility="{Binding DetailVisiblity}" Grid.Row="1" Grid.Column="2">
             <Grid.RowDefinitions>
@@ -78,7 +78,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Edit" Command="{Binding EditEquipmentCommand}" Grid.Column="0"/>
+                    <Button Content="Edit" Command="{Binding EditCommand}" Grid.Column="0"/>
                     <Button Content="Remove" Command="{Binding DeleteCommand}" Grid.Column="1"/>
                 </Grid>
             </StackPanel>

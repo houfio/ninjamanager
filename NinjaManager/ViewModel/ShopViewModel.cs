@@ -15,11 +15,11 @@ namespace NinjaManager.ViewModel
     {
         public NinjaListModel List { get; }
         public ICommand CategoryCommand { get; }
-        public ICommand AddEquipmentCommand { get; }
+        public ICommand AddCommand { get; }
         public ICommand EquipmentCommand { get; }
         public ICommand BuyCommand { get; }
         public ICommand SellCommand { get; }
-        public ICommand EditEquipmentCommand { get; }
+        public ICommand EditCommand { get; }
         public ICommand DeleteCommand { get; }
         public Collection<string> Categories { get; }
         public Collection<EquipmentModel> Equipment { get; }
@@ -29,19 +29,17 @@ namespace NinjaManager.ViewModel
 
         private int _selected = -1;
         private AddEquipmentView _addView;
-        private EditEquipmentView _editEquipmentView;
+        private EditEquipmentView _editView;
 
         public ShopViewModel(NinjaListModel list)
         {
             List = list;
             CategoryCommand = new RelayCommand<string>(SelectCategory);
-            AddEquipmentCommand = new RelayCommand(() => OpenWindow(ref _addView, () => _addView = null));
-            EditEquipmentCommand = new RelayCommand(() => OpenWindow(ref _editEquipmentView, () => _editEquipmentView = null));
-
+            AddCommand = new RelayCommand(() => OpenWindow(ref _addView, () => _addView = null));
             EquipmentCommand = new RelayCommand<EquipmentModel>(SelectEquipment);
             BuyCommand = new BuyCommand(this);
             SellCommand = new SellCommand(this);
-            //EditCommand = new RelayCommand(EditEquipment);
+            EditCommand = new RelayCommand(() => OpenWindow(ref _editView, () => _editView = null));
             DeleteCommand = new DeleteEquipmentCommand(this);
             Equipment = new ObservableCollection<EquipmentModel>();
 
@@ -53,7 +51,7 @@ namespace NinjaManager.ViewModel
 
         public void Close()
         {
-            CloseWindows(_addView, _editEquipmentView);
+            CloseWindows(_addView, _editView);
             SelectCategory(null);
         }
 
@@ -65,7 +63,8 @@ namespace NinjaManager.ViewModel
 
         private void SelectCategory(string category)
         {
-            CloseWindows(_editEquipmentView);
+            CloseWindows(_editView);
+
             using (var entities = new NinjaManagerEntities())
             {
                 var list = entities.Equipments.Where((e) => e.Category == category).ToList();
