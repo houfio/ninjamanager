@@ -17,11 +17,8 @@ namespace NinjaManager.Util
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<NinjaListModel>();
-            SimpleIoc.Default.Register<AddNinjaViewModel>();
             SimpleIoc.Default.Register<InventoryViewModel>();
-            SimpleIoc.Default.Register<EditNinjaViewModel>();
             SimpleIoc.Default.Register<ShopViewModel>();
-            SimpleIoc.Default.Register<AddEquipmentViewModel>();
         }
     }    
 }
